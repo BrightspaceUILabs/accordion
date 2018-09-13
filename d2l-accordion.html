@@ -1,0 +1,51 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-selector/iron-multi-selectable.html">
+<link rel="import" href="d2l-accordion-collapse.html">
+
+<dom-module id="d2l-accordion">
+	<template>
+		<style>
+		:host {
+			display: block;
+			box-sizing: border-box;
+		}
+	</style>
+	<slot></slot>
+	</template>
+
+	<script>
+		/**
+		 * `d2l-accordion`
+		 *
+		 * @demo demo/index.html
+		 */
+		Polymer({
+			is: 'd2l-accordion',
+			properties: {
+					/**
+				 * Indicates the component is an accordion.
+				 */
+				isAccordion: {
+					type: Boolean,
+					readOnly: true,
+					value: true
+				},
+				/**
+				 * Whether to automatically close other opened branches
+				 */
+				autoClose: {
+					type: Boolean,
+					value: false
+				}
+			},
+			behaviors: [
+				Polymer.IronMultiSelectableBehavior
+			],
+			ready: function() {
+				this.selectable = 'd2l-accordion-collapse';
+				this.activateEvent = 'd2l-accordion-collapse-state-changed';
+				this.selectedAttribute = 'opened';
+			}
+		});
+	</script>
+</dom-module>

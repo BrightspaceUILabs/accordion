@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../d2l-accordion.html">
+
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles">
+			</style>
+		</custom-style>
+	</head>
+	<body>
+		<demo-snippet>
+			<template>
+				<d2l-accordion>
+					<d2l-accordion-collapse title="Regular">
+						Demo
+					</d2l-accordion-collapse>
+					<div>This text is always shown</div>
+					<d2l-accordion-collapse title="Flex" flex>
+						Demo
+					</d2l-accordion-collapse>
+				</d2l-accordion>
+			</template>
+		</demo-snippet>
+		<demo-snippet>
+			<template>
+				<d2l-accordion auto-close>
+					<d2l-accordion-collapse title="AutoClose">
+						<d2l-accordion-collapse title="Child 1">
+							<d2l-accordion-collapse title="Grandchild 1">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+							<d2l-accordion-collapse title="Grandchild 2">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+						</d2l-accordion-collapse>
+						<d2l-accordion-collapse title="Child 2">
+							<d2l-accordion-collapse title="Grandchild 1">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+							<d2l-accordion-collapse title="Grandchild 2">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+						</d2l-accordion-collapse>
+					</d2l-accordion-collapse>
+				</d2l-accordion>
+				<d2l-accordion>
+					<d2l-accordion-collapse title="Not AutoClose">
+						<d2l-accordion-collapse title="Child 1">
+							<d2l-accordion-collapse title="Grandchild 1">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+							<d2l-accordion-collapse title="Grandchild 2">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+						</d2l-accordion-collapse>
+						<d2l-accordion-collapse title="Child 2">
+							<d2l-accordion-collapse title="Grandchild 1">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+							<d2l-accordion-collapse title="Grandchild 2">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+						</d2l-accordion-collapse>
+					</d2l-accordion-collapse>
+				</d2l-accordion>
+			</template>
+		</demo-snippet>
+
+	</body>
+</html>

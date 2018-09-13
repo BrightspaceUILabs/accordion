@@ -1,0 +1,1793 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "`d2l-accordion-collapse`\nAn iron-collapse with a trigger section and optional expand/collapse icons.\nOriginally taken from: https://www.webcomponents.org/element/jifalops/iron-collapse-button",
+      "summary": "",
+      "path": "d2l-accordion-collapse.html",
+      "properties": [
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Label title",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 51,
+              "column": 4
+            },
+            "end": {
+              "line": 54,
+              "column": 5
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "noAnimation",
+          "type": "boolean",
+          "description": "Corresponds to the iron-collapse's noAnimation property.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 58,
+              "column": 4
+            },
+            "end": {
+              "line": 61,
+              "column": 5
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false"
+        },
+        {
+          "name": "opened",
+          "type": "boolean",
+          "description": "Whether currently expanded.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 65,
+              "column": 4
+            },
+            "end": {
+              "line": 70,
+              "column": 5
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "false"
+        },
+        {
+          "name": "expandIcon",
+          "type": "string",
+          "description": "The icon when collapsed.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 74,
+              "column": 4
+            },
+            "end": {
+              "line": 77,
+              "column": 5
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"d2l-tier1:arrow-expand\""
+        },
+        {
+          "name": "collapseIcon",
+          "type": "string",
+          "description": "The icon when expanded.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 81,
+              "column": 4
+            },
+            "end": {
+              "line": 84,
+              "column": 5
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"d2l-tier1:arrow-collapse\""
+        },
+        {
+          "name": "noIcons",
+          "type": "boolean",
+          "description": "Whether to hide the expand/collapse icon.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 88,
+              "column": 4
+            },
+            "end": {
+              "line": 91,
+              "column": 5
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false"
+        },
+        {
+          "name": "flex",
+          "type": "boolean",
+          "description": "Whether to use or not flex layout.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 95,
+              "column": 4
+            },
+            "end": {
+              "line": 98,
+              "column": 5
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false"
+        }
+      ],
+      "methods": [
+        {
+          "name": "open",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 100,
+              "column": 3
+            },
+            "end": {
+              "line": 100,
+              "column": 71
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "close",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 101,
+              "column": 3
+            },
+            "end": {
+              "line": 101,
+              "column": 73
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "toggle",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 102,
+              "column": 3
+            },
+            "end": {
+              "line": 105,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "_toggle",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 106,
+              "column": 3
+            },
+            "end": {
+              "line": 106,
+              "column": 57
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "cond"
+            },
+            {
+              "name": "t"
+            },
+            {
+              "name": "f"
+            }
+          ]
+        },
+        {
+          "name": "_getConditionalClasses",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 107,
+              "column": 3
+            },
+            "end": {
+              "line": 112,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "flex"
+            },
+            {
+              "name": "opened"
+            }
+          ]
+        },
+        {
+          "name": "_notifyStateChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 113,
+              "column": 3
+            },
+            "end": {
+              "line": 115,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "params": []
+        }
+      ],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/d2l-accordion-collapse.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 45,
+          "column": 10
+        },
+        "end": {
+          "line": 116,
+          "column": 3
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "title",
+          "description": "Label title",
+          "sourceRange": {
+            "start": {
+              "line": 51,
+              "column": 4
+            },
+            "end": {
+              "line": 54,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "no-animation",
+          "description": "Corresponds to the iron-collapse's noAnimation property.",
+          "sourceRange": {
+            "start": {
+              "line": 58,
+              "column": 4
+            },
+            "end": {
+              "line": 61,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        },
+        {
+          "name": "opened",
+          "description": "Whether currently expanded.",
+          "sourceRange": {
+            "start": {
+              "line": 65,
+              "column": 4
+            },
+            "end": {
+              "line": 70,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        },
+        {
+          "name": "expand-icon",
+          "description": "The icon when collapsed.",
+          "sourceRange": {
+            "start": {
+              "line": 74,
+              "column": 4
+            },
+            "end": {
+              "line": 77,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "collapse-icon",
+          "description": "The icon when expanded.",
+          "sourceRange": {
+            "start": {
+              "line": 81,
+              "column": 4
+            },
+            "end": {
+              "line": 84,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "no-icons",
+          "description": "Whether to hide the expand/collapse icon.",
+          "sourceRange": {
+            "start": {
+              "line": 88,
+              "column": 4
+            },
+            "end": {
+              "line": 91,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        },
+        {
+          "name": "flex",
+          "description": "Whether to use or not flex layout.",
+          "sourceRange": {
+            "start": {
+              "line": 95,
+              "column": 4
+            },
+            "end": {
+              "line": 98,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        }
+      ],
+      "events": [
+        {
+          "type": "CustomEvent",
+          "name": "opened-changed",
+          "description": "Fired when the `opened` property changes.",
+          "metadata": {}
+        }
+      ],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [
+        {
+          "description": "",
+          "name": "",
+          "range": {
+            "file": "d2l-accordion-collapse.html",
+            "start": {
+              "line": 33,
+              "column": 6
+            },
+            "end": {
+              "line": 33,
+              "column": 19
+            }
+          }
+        }
+      ],
+      "tagname": "d2l-accordion-collapse"
+    },
+    {
+      "description": "`d2l-accordion`",
+      "summary": "",
+      "path": "d2l-accordion.html",
+      "properties": [
+        {
+          "name": "attrForSelected",
+          "type": "string",
+          "description": "If you want to use an attribute value or property of an element for\n`selected` instead of the index, set this to the name of the attribute\nor property. Hyphenated values are converted to camel case when used to\nlook up the property of a selectable element. Camel cased values are\n*not* converted to hyphenated values for attribute lookup. It's\nrecommended that you provide the hyphenated form of the name so that\nselection works in both cases. (Use `attr-or-property-name` instead of\n`attrOrPropertyName`.)",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 59,
+              "column": 6
+            },
+            "end": {
+              "line": 62,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "null",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selected",
+          "type": "(string | number)",
+          "description": "Gets or sets the selected element. The default is to use the index of the item.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 68,
+              "column": 6
+            },
+            "end": {
+              "line": 71,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selectedItem",
+          "type": "?Object",
+          "description": "Returns the currently selected item.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 78,
+              "column": 6
+            },
+            "end": {
+              "line": 82,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true,
+              "readOnly": true
+            }
+          },
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "activateEvent",
+          "type": "string",
+          "description": "The event that fires from items when they are selected. Selectable\nwill listen for this event from items and update the selection state.\nSet to empty string to listen to no events.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 89,
+              "column": 6
+            },
+            "end": {
+              "line": 93,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_activateEventChanged\""
+            }
+          },
+          "defaultValue": "\"tap\"",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selectable",
+          "type": "string",
+          "description": "This is a CSS selector string.  If this is set, only items that match the CSS selector\nare selectable.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 99,
+              "column": 6
+            },
+            "end": {
+              "line": 99,
+              "column": 24
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selectedClass",
+          "type": "string",
+          "description": "The class to set on elements when selected.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 104,
+              "column": 6
+            },
+            "end": {
+              "line": 107,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"iron-selected\"",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selectedAttribute",
+          "type": "string",
+          "description": "The attribute to set on elements when selected.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 112,
+              "column": 6
+            },
+            "end": {
+              "line": 115,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "null",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "fallbackSelection",
+          "type": "string",
+          "description": "Default fallback if the selection based on selected with `attrForSelected`\nis not found.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 121,
+              "column": 6
+            },
+            "end": {
+              "line": 124,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "null",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "items",
+          "type": "Array",
+          "description": "The list of items from which a selection can be made.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 129,
+              "column": 6
+            },
+            "end": {
+              "line": 136,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true,
+              "readOnly": true
+            }
+          },
+          "defaultValue": "[]",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_excludedLocalNames",
+          "type": "Object",
+          "description": "The set of excluded elements where the key is the `localName`\nof the element that will be ignored from the item list.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 144,
+              "column": 6
+            },
+            "end": {
+              "line": 154,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "{\"template\":1,\"dom-bind\":1,\"dom-if\":1,\"dom-repeat\":1}",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "multi",
+          "type": "boolean",
+          "description": "If true, multiple selections are allowed.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 23,
+              "column": 6
+            },
+            "end": {
+              "line": 27,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"multiChanged\""
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "selectedValues",
+          "type": "Array",
+          "description": "Gets or sets the selected elements. This is used instead of `selected` when `multi`\nis true.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 33,
+              "column": 6
+            },
+            "end": {
+              "line": 39,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          },
+          "defaultValue": "[]",
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "selectedItems",
+          "type": "Array",
+          "description": "Returns an array of currently selected items.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 44,
+              "column": 6
+            },
+            "end": {
+              "line": 51,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true,
+              "readOnly": true
+            }
+          },
+          "defaultValue": "[]",
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        }
+      ],
+      "methods": [
+        {
+          "name": "created",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 163,
+              "column": 4
+            },
+            "end": {
+              "line": 166,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "attached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 168,
+              "column": 4
+            },
+            "end": {
+              "line": 171,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "detached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 173,
+              "column": 4
+            },
+            "end": {
+              "line": 178,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "indexOf",
+          "description": "Returns the index of the given item.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 187,
+              "column": 4
+            },
+            "end": {
+              "line": 189,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "item",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "desc": "Returns the index of the item"
+          },
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "select",
+          "description": "Selects the given value. If the `multi` property is true, then the selected state of the\n`value` will be toggled; otherwise the `value` will be selected.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 66,
+              "column": 4
+            },
+            "end": {
+              "line": 72,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value",
+              "type": "(string | number)",
+              "description": "the value to select."
+            }
+          ],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "selectPrevious",
+          "description": "Selects the previous item.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 206,
+              "column": 4
+            },
+            "end": {
+              "line": 210,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selectNext",
+          "description": "Selects the next item.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 217,
+              "column": 4
+            },
+            "end": {
+              "line": 220,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selectIndex",
+          "description": "Selects the item at the given index.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 227,
+              "column": 4
+            },
+            "end": {
+              "line": 229,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "index"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "forceSynchronousItemUpdate",
+          "description": "Force a synchronous update of the `items` property.\n\nNOTE: Consider listening for the `iron-items-changed` event to respond to\nupdates to the set of selectable items after updates to the DOM list and\nselection state have been made.\n\nWARNING: If you are using this method, you should probably consider an\nalternate approach. Synchronously querying for items is potentially\nslow for many use cases. The `items` property will update asynchronously\non its own to reflect selectable items in the DOM.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 243,
+              "column": 4
+            },
+            "end": {
+              "line": 255,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_shouldUpdateSelection",
+          "description": "UNUSED, FOR API COMPATIBILITY",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 80,
+              "column": 4
+            },
+            "end": {
+              "line": 83,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "_checkFallback",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 262,
+              "column": 4
+            },
+            "end": {
+              "line": 264,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_addListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 266,
+              "column": 4
+            },
+            "end": {
+              "line": 268,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "eventName"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_removeListener",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 270,
+              "column": 4
+            },
+            "end": {
+              "line": 272,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "eventName"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_activateEventChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 274,
+              "column": 4
+            },
+            "end": {
+              "line": 277,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "eventName"
+            },
+            {
+              "name": "old"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_updateItems",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 279,
+              "column": 4
+            },
+            "end": {
+              "line": 283,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_updateAttrForSelected",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 85,
+              "column": 4
+            },
+            "end": {
+              "line": 95,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "_updateSelected",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 97,
+              "column": 4
+            },
+            "end": {
+              "line": 103,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "_selectSelected",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 295,
+              "column": 4
+            },
+            "end": {
+              "line": 311,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "selected"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_filterItem",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 313,
+              "column": 4
+            },
+            "end": {
+              "line": 315,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_valueToItem",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 317,
+              "column": 4
+            },
+            "end": {
+              "line": 319,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_valueToIndex",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 321,
+              "column": 4
+            },
+            "end": {
+              "line": 331,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_indexToValue",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 333,
+              "column": 4
+            },
+            "end": {
+              "line": 342,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "index"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_valueForItem",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 344,
+              "column": 4
+            },
+            "end": {
+              "line": 354,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "item"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_applySelection",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 356,
+              "column": 4
+            },
+            "end": {
+              "line": 365,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "item"
+            },
+            {
+              "name": "isSelected"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_selectionChange",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 129,
+              "column": 4
+            },
+            "end": {
+              "line": 143,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "_observeItems",
+          "description": "observe items change under the given node.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 372,
+              "column": 4
+            },
+            "end": {
+              "line": 384,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_activateHandler",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 386,
+              "column": 4
+            },
+            "end": {
+              "line": 398,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "e"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "_itemActivate",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 400,
+              "column": 4
+            },
+            "end": {
+              "line": 405,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
+            },
+            {
+              "name": "item"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "multiChanged",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 74,
+              "column": 4
+            },
+            "end": {
+              "line": 77,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "multi"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "_selectMulti",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 105,
+              "column": 4
+            },
+            "end": {
+              "line": 127,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "values"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "_toggleSelected",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 145,
+              "column": 4
+            },
+            "end": {
+              "line": 153,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "_valuesToItems",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 155,
+              "column": 4
+            },
+            "end": {
+              "line": 159,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "values"
+            }
+          ],
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "ready",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 26,
+              "column": 3
+            },
+            "end": {
+              "line": 30,
+              "column": 4
+            }
+          },
+          "metadata": {},
+          "params": []
+        }
+      ],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "demo/index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 21,
+          "column": 10
+        },
+        "end": {
+          "line": 31,
+          "column": 3
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "attr-for-selected",
+          "description": "If you want to use an attribute value or property of an element for\n`selected` instead of the index, set this to the name of the attribute\nor property. Hyphenated values are converted to camel case when used to\nlook up the property of a selectable element. Camel cased values are\n*not* converted to hyphenated values for attribute lookup. It's\nrecommended that you provide the hyphenated form of the name so that\nselection works in both cases. (Use `attr-or-property-name` instead of\n`attrOrPropertyName`.)",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 59,
+              "column": 6
+            },
+            "end": {
+              "line": 62,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selected",
+          "description": "Gets or sets the selected element. The default is to use the index of the item.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 68,
+              "column": 6
+            },
+            "end": {
+              "line": 71,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "(string | number)",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selected-item",
+          "description": "Returns the currently selected item.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 78,
+              "column": 6
+            },
+            "end": {
+              "line": 82,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "?Object",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "activate-event",
+          "description": "The event that fires from items when they are selected. Selectable\nwill listen for this event from items and update the selection state.\nSet to empty string to listen to no events.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 89,
+              "column": 6
+            },
+            "end": {
+              "line": 93,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selectable",
+          "description": "This is a CSS selector string.  If this is set, only items that match the CSS selector\nare selectable.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 99,
+              "column": 6
+            },
+            "end": {
+              "line": 99,
+              "column": 24
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selected-class",
+          "description": "The class to set on elements when selected.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 104,
+              "column": 6
+            },
+            "end": {
+              "line": 107,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "selected-attribute",
+          "description": "The attribute to set on elements when selected.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 112,
+              "column": 6
+            },
+            "end": {
+              "line": 115,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "fallback-selection",
+          "description": "Default fallback if the selection based on selected with `attrForSelected`\nis not found.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 121,
+              "column": 6
+            },
+            "end": {
+              "line": 124,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "items",
+          "description": "The list of items from which a selection can be made.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-selectable.html",
+            "start": {
+              "line": 129,
+              "column": 6
+            },
+            "end": {
+              "line": 136,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "Array",
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "name": "multi",
+          "description": "If true, multiple selections are allowed.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 23,
+              "column": 6
+            },
+            "end": {
+              "line": 27,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "selected-values",
+          "description": "Gets or sets the selected elements. This is used instead of `selected` when `multi`\nis true.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 33,
+              "column": 6
+            },
+            "end": {
+              "line": 39,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "Array",
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "name": "selected-items",
+          "description": "Returns an array of currently selected items.",
+          "sourceRange": {
+            "file": "bower_components/iron-selector/iron-multi-selectable.html",
+            "start": {
+              "line": 44,
+              "column": 6
+            },
+            "end": {
+              "line": 51,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "Array",
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        }
+      ],
+      "events": [
+        {
+          "type": "CustomEvent",
+          "name": "iron-activate",
+          "description": "iron-activate",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "iron-deselect",
+          "description": "iron-deselect",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "iron-items-changed",
+          "description": "iron-items-changed",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "iron-select",
+          "description": "iron-select",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "selected-changed",
+          "description": "Fired when the `selected` property changes.",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "selected-item-changed",
+          "description": "Fired when the `selectedItem` property changes.",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "items-changed",
+          "description": "Fired when the `items` property changes.",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronSelectableBehavior"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "selected-values-changed",
+          "description": "Fired when the `selectedValues` property changes.",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "selected-items-changed",
+          "description": "Fired when the `selectedItems` property changes.",
+          "metadata": {},
+          "inheritedFrom": "Polymer.IronMultiSelectableBehavior"
+        }
+      ],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [
+        {
+          "description": "",
+          "name": "",
+          "range": {
+            "file": "d2l-accordion.html",
+            "start": {
+              "line": 12,
+              "column": 4
+            },
+            "end": {
+              "line": 12,
+              "column": 17
+            }
+          }
+        }
+      ],
+      "tagname": "d2l-accordion"
+    }
+  ]
+}

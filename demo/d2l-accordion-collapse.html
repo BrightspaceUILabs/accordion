@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../d2l-accordion-collapse.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles">
+			</style>
+		</custom-style>
+	</head>
+	<body>
+		<demo-snippet>
+			<template>
+				<d2l-accordion-collapse title="Regular" opened>
+					Demo
+				</d2l-accordion-collapse>
+			</template>
+		</demo-snippet>
+		<demo-snippet>
+			<template>
+				<d2l-accordion-collapse title="Flex" flex>
+					Demo
+				</d2l-accordion-collapse>
+			</template>
+		</demo-snippet>
+		<demo-snippet>
+			<template>
+				<d2l-accordion-collapse title="NoIcons" no-icons>
+					Demo
+				</d2l-accordion-collapse>
+			</template>
+		</demo-snippet>
+		<demo-snippet>
+			<template>
+				<d2l-accordion-collapse>
+					<button slot="header">CustomHeader</button>
+					Demo
+				</d2l-accordion-collapse>
+			</template>
+		</demo-snippet>
+	</body>
+</html>
