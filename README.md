@@ -7,11 +7,12 @@ Polymer components:
 * multi - allows multiple collapsibles to be opened at the same time
 * selected - used only if `multi` is disabled. sets item index to be opened by default
 * selectedValue - used only if `multi` is set. Sets array of indexes for the items to be opened by default
-* autoClose - expanding any **d2l-accordion-collapse** child will automatically close other opened children.
+* autoClose - expanding any **d2l-accordion-collapse** child (except those that are disabled) will automatically close other opened children.
 2. **d2l-accordion-collapse** - accordion component. Attributes:
 * flex - adjust component to the parent width
 * noIcons - hide the expand/collapse icon
 * opened - container is opened by default. Do not use this attribute when inside the **d2l-accordion** as the **d2l-accordion** does not monitor opened state of the items at the start. In this case, use `selected` or `selectedValue` **d2l-accordion** attributes instead.
+* disabled - container cannot be expanded or collapsed
 
 Example 1:
 ```html
