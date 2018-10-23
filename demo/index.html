@@ -29,19 +29,19 @@
 			<template>
 				<d2l-accordion auto-close>
 					<d2l-accordion-collapse title="AutoClose">
-						<d2l-accordion-collapse title="Child 1">
-							<d2l-accordion-collapse title="Grandchild 1">
+						<d2l-accordion-collapse title="- Child 1">
+							<d2l-accordion-collapse title="-- Grandchild 1">
 								Demo<br/>Demo<br/>Demo
 							</d2l-accordion-collapse>
-							<d2l-accordion-collapse title="Grandchild 2">
+							<d2l-accordion-collapse title="-- Grandchild 2">
 								Demo<br/>Demo<br/>Demo
 							</d2l-accordion-collapse>
 						</d2l-accordion-collapse>
-						<d2l-accordion-collapse title="Child 2">
-							<d2l-accordion-collapse title="Grandchild 1">
+						<d2l-accordion-collapse title="- Child 2">
+							<d2l-accordion-collapse title="-- Grandchild 1">
 								Demo<br/>Demo<br/>Demo
 							</d2l-accordion-collapse>
-							<d2l-accordion-collapse title="Grandchild 2">
+							<d2l-accordion-collapse title="-- Grandchild 2">
 								Demo<br/>Demo<br/>Demo
 							</d2l-accordion-collapse>
 						</d2l-accordion-collapse>
@@ -49,19 +49,42 @@
 				</d2l-accordion>
 				<d2l-accordion>
 					<d2l-accordion-collapse title="Not AutoClose">
-						<d2l-accordion-collapse title="Child 1">
-							<d2l-accordion-collapse title="Grandchild 1">
+						<d2l-accordion-collapse title="- Child 1">
+							<d2l-accordion-collapse title="-- Grandchild 1">
 								Demo<br/>Demo<br/>Demo
 							</d2l-accordion-collapse>
-							<d2l-accordion-collapse title="Grandchild 2">
+							<d2l-accordion-collapse title="-- Grandchild 2">
 								Demo<br/>Demo<br/>Demo
 							</d2l-accordion-collapse>
 						</d2l-accordion-collapse>
-						<d2l-accordion-collapse title="Child 2">
-							<d2l-accordion-collapse title="Grandchild 1">
+						<d2l-accordion-collapse title="- Child 2">
+							<d2l-accordion-collapse title="-- Grandchild 1">
 								Demo<br/>Demo<br/>Demo
 							</d2l-accordion-collapse>
-							<d2l-accordion-collapse title="Grandchild 2">
+							<d2l-accordion-collapse title="-- Grandchild 2">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+						</d2l-accordion-collapse>
+					</d2l-accordion-collapse>
+				</d2l-accordion>
+				<d2l-accordion auto-close>
+					<d2l-accordion-collapse title="AutoClose with Some Child Accordions Disabled">
+						<d2l-accordion-collapse title="- Child 1 (opened/disabled)" opened disabled>
+							<d2l-accordion-collapse title="-- Grandchild 1">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+							<d2l-accordion-collapse title="-- Grandchild 2">
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+						</d2l-accordion-collapse>
+						<d2l-accordion-collapse title="- Child 2">
+							<d2l-accordion-collapse title="-- Grandchild 1 (closed/disabled)" disabled>
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+							<d2l-accordion-collapse title="-- Grandchild 2 (opened/disabled)" opened disabled>
+								Demo<br/>Demo<br/>Demo
+							</d2l-accordion-collapse>
+							<d2l-accordion-collapse title="-- Grandchild 3"d>
 								Demo<br/>Demo<br/>Demo
 							</d2l-accordion-collapse>
 						</d2l-accordion-collapse>

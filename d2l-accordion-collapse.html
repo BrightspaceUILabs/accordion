@@ -103,6 +103,13 @@
 					value: false
 				},
 				/**
+				 * Whether the accordion's expand/collapse function is disabled.
+				 */
+				disabled: {
+					type: Boolean,
+					value: false
+				},
+				/**
 				 * Listener for state changes.
 				 */
 				_boundListener: {
@@ -115,21 +122,36 @@
 			},
 
 			attached: function() {
+				if (this.disabled) {
+					return;
+				}
 				window.addEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
 			},
 
 			detached: function() {
+				if (this.disabled) {
+					return;
+				}
 				window.removeEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
 			},
 			open: function() {
+				if (this.disabled) {
+					return;
+				}
 				this.opened = true;
 				this._notifyStateChanged();
 			},
 			close: function() {
+				if (this.disabled) {
+					return;
+				}
 				this.opened = false;
 				this._notifyStateChanged();
 			},
 			toggle: function() {
+				if (this.disabled) {
+					return;
+				}
 				if (this.opened) {
 					this.close();
 				}	else {
