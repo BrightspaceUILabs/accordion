@@ -1,4 +1,19 @@
 language: node_js
 node_js: node
+addons:
+  chrome: stable
 script:
-- npm run lint
+- npm run test:lint
+- |
+  if [ $TRAVIS_PULL_REQUEST != false ] && [ $TRAVIS_SECURE_ENV_VARS == true ]; then
+    echo "Pull request with secure environment variables, running Sauce tests...";
+    npm run test:polymer:sauce || travis_terminate 1;
+  else
+    echo "Not a pull request and/or no secure environment variables, running headless tests...";
+    npm run test:polymer:local || travis_terminate 1;
+  fi
+env:
+  global:
+  - SAUCE_USERNAME: Desire2Learn
+  # SAUCE_ACCESS_KEY
+  - secure: OuJNkvvWgtt0Pgpq5x0W0nwKOCe67bv6+5QcA13RncRI+pfgmrrK4ZF3Uyvt+N5GVuDbFR0liKFbXmTJ5duHfgL/CjEUkV+EVNwaGuQTSpQD9rjrWjYgaG5/DakFxj1hYei8fy7R9ZwKBipc6GP7EUAAzzkfBNgDlhmxktMK+dSzAgfpIrP/HLQVv0NdQB24gNP/kLHINtu0Slkt43rUaHDl97mnCPtbBQdSdyBI/kTpBcWAYrkwMEfzkst6KJhpBC7l1qJECphhzH0a8gIWDCMCLblhxOWksgfgpTCRV61o0SN7o3Hkkw3kbomkYtbEodnWRJbJ+um3WnMBkhJmpa3BuxtsIXuKbCInzMMf4MPn+9LgiYpQsL2EumwYnH82yF02qvMlrJOoMRaw2qXI9ty8aOv5sBRRYfj+Kz8N50tPZ0hOLdNgGb2tNxAM+Aqc5qmNAPLYdWQzVNSIDCm8ZbLeTFru9teDRomqPLACDB59/e4AA4xVmJDNtXirI7hdomludZZNaiYHp2MYIRfjDDhA38DCYCv3p2rlEz1wpCRIAUs2xjHQVBRnqMRx2ubfFzuprwq5PX7VmZhvZmtQ6ylqgQ7Tdv+io/qjKrurpnnp3+42610IIS731dcYTbV7c6l24nOA9l8GJM6BZUbhTqIp818G7a33SueYrHBVnKM=
