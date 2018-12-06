@@ -166,18 +166,18 @@
 				return classes.join(' ');
 			},
 			_onStateChanged: function(event) {
-				if ( this.opened
+				if (this.opened
 					&& event.detail.el !== this
-					&& this._haveSharedAutoCloseAccordionAncestor( this, event.detail.el )
+					&& this._haveSharedAutoCloseAccordionAncestor(this, event.detail.el)
 				) {
 					/* close an opened child */
-					if ( !event.detail.opened
+					if (!event.detail.opened
 						&& D2L.Dom.isComposedAncestor(event.detail.el, this)
 					) {
 						this.opened = false;
 					}
 					/* close an opened sibling */
-					if ( event.detail.opened
+					if (event.detail.opened
 						&& !D2L.Dom.isComposedAncestor(event.detail.el, this)
 						&& !D2L.Dom.isComposedAncestor(this, event.detail.el)
 					) {
@@ -195,10 +195,10 @@
 						return true;
 					}
 				});
-				if ( !accordionAncestor ) {
+				if (!accordionAncestor) {
 					return false;
 				}
-				if ( !D2L.Dom.isComposedAncestor(accordionAncestor, node2) ) {
+				if (!D2L.Dom.isComposedAncestor(accordionAncestor, node2)) {
 					return false;
 				}
 				return true;
