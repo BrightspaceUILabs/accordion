@@ -1,5 +1,5 @@
 {
-  "name": "@d2l/accordion",
+  "name": "d2l-accordion",
   "version": "0.0.1",
   "description": "Polymer-based accordion component",
   "scripts": {
@@ -14,10 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Brightspace/d2l-accordion"
+    "url": "https://github.com/BrightspaceUI/accordion"
   },
   "author": "D2L",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "devDependencies": {
     "bower-art-resolver": "^2.0.6",
     "eslint": "^4.15.0",
