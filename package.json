@@ -20,6 +20,6 @@
     "eslint": "^3.19.0",
     "eslint-config-brightspace": "^0.2.4",
     "eslint-plugin-html": "^1.7.0",
-    "polymer-cli": "^1.6.0"
+    "polymer-cli": "^1.8.0"
   }
 }
