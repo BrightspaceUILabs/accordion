@@ -3,7 +3,7 @@
 <link rel="import" href="d2l-accordion-collapse.html">
 
 <dom-module id="d2l-accordion">
-	<template>
+	<template strip-whitespace>
 		<style>
 		:host {
 			display: block;
@@ -22,7 +22,7 @@
 		Polymer({
 			is: 'd2l-accordion',
 			properties: {
-					/**
+				/**
 				 * Indicates the component is an accordion.
 				 */
 				isAccordion: {

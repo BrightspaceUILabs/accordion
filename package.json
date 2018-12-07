@@ -1,25 +1,26 @@
 {
-  "name": "@d2l/accordion",
-  "version": "0.0.1",
+  "name": "d2l-accordion",
   "description": "Polymer-based accordion component",
   "scripts": {
-    "lint": "eslint --ext html . && polymer lint",
     "postinstall": "polymer install --variants",
     "start": "polymer serve",
-    "test": "polymer test",
-    "posttest": "npm run lint"
+    "test": "npm run test:lint && npm run test:polymer:local",
+    "test:lint": "npm run test:lint:js && npm run test:lint:wc",
+    "test:lint:js": "eslint *.html test/*.html demo/*.html",
+    "test:lint:wc": "polymer lint",
+    "test:polymer:local": "polymer test --skip-plugin sauce",
+    "test:polymer:sauce": "polymer test --skip-plugin local"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Brightspace/d2l-accordion"
+    "url": "https://github.com/BrightspaceUI/accordion"
   },
   "author": "D2L",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "devDependencies": {
-    "bower-art-resolver": "^2.0.6",
-    "eslint": "^3.19.0",
-    "eslint-config-brightspace": "^0.2.4",
-    "eslint-plugin-html": "^1.7.0",
-    "polymer-cli": "^1.8.0"
+    "eslint": "^4.15.0",
+    "eslint-config-brightspace": "^0.4.0",
+    "eslint-plugin-html": "^4.0.1",
+    "polymer-cli": "^1.9.1"
   }
 }

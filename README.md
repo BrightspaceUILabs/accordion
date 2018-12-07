@@ -20,7 +20,7 @@ Example 1:
 	<d2l-accordion-collapse title="Item 1" flex>
 		Text 1
 	</d2l-accordion-collapse>
-	<d2l-accordion-item title="Item 2" flex>
+	<d2l-accordion-collapse title="Item 2" flex>
 		Item 3
 	</d2l-accordion-collapse>
 	<d2l-accordion-collapse title="Item 3" flex>
@@ -35,7 +35,7 @@ Example 2:
 	<d2l-accordion-collapse title="Item 1" flex>
 		Text 1
 	</d2l-accordion-collapse>
-	<d2l-accordion-item title="Item 2" flex>
+	<d2l-accordion-collapse title="Item 2" flex>
 		Item 3
 	</d2l-accordion-collapse>
 	<d2l-accordion-collapse title="Item 3" flex>
