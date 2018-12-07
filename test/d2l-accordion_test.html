@@ -6,10 +6,11 @@
 
 		<title>d2l-accordion test</title>
 
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
+		<script src="../../@babel/polyfill/browser.js"></script>
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script src="../../wct-browser-legacy/browser.js"></script>
 
-		<link rel="import" href="../d2l-accordion.html">
+		<script type="module" src="../d2l-accordion.js"></script>
 	</head>
 	<body>
 		<test-fixture id="accordion-collapse-fixture">
@@ -22,44 +23,45 @@
 			</template>
 		</test-fixture>
 
-		<script>
-			/* global assert */
-			suite('Test <d2l-accordion>', function() {
-				test('<d2l-accordion> initial select state', function(done) {
-					var myEl = fixture('accordion-collapse-fixture');
-					flush(function() {
-						expect(myEl.selected).to.not.exist;
-						expect(myEl.items[0].opened).to.be.false;
-						expect(myEl.items[1].opened).to.be.false;
-						expect(myEl.items[2].opened).to.be.false;
-						done();
-					});
-				});
+		<script type="module">
+import '../d2l-accordion.js';
+/* global assert */
+suite('Test <d2l-accordion>', function() {
+	test('<d2l-accordion> initial select state', function(done) {
+		var myEl = fixture('accordion-collapse-fixture');
+		flush(function() {
+			expect(myEl.selected).to.not.exist;
+			expect(myEl.items[0].opened).to.be.false;
+			expect(myEl.items[1].opened).to.be.false;
+			expect(myEl.items[2].opened).to.be.false;
+			done();
+		});
+	});
 
-				test('<d2l-accordion> state change', function(done) {
-					var myEl = fixture('accordion-collapse-fixture');
-					flush(function() {
-						expect(myEl.items[0].opened).to.be.false;
-						expect(myEl.items[1].opened).to.be.false;
-						expect(myEl.items[2].opened).to.be.false;
-						myEl.selected = 1;
-						assert.equal(myEl.items[0].opened, false);
-						assert.equal(myEl.items[1].opened, true);
-						assert.equal(myEl.items[2].opened, false);
-						done();
-					});
-				});
+	test('<d2l-accordion> state change', function(done) {
+		var myEl = fixture('accordion-collapse-fixture');
+		flush(function() {
+			expect(myEl.items[0].opened).to.be.false;
+			expect(myEl.items[1].opened).to.be.false;
+			expect(myEl.items[2].opened).to.be.false;
+			myEl.selected = 1;
+			assert.equal(myEl.items[0].opened, false);
+			assert.equal(myEl.items[1].opened, true);
+			assert.equal(myEl.items[2].opened, false);
+			done();
+		});
+	});
 
-				test('<d2l-accordion> trigger test', function(done) {
-					var myEl = fixture('accordion-collapse-fixture');
-					flush(function() {
-						expect(myEl.items[0].opened).to.be.false;
-						myEl.items[0].$.trigger.click();
-						expect(myEl.items[0].opened).to.be.true;
-						done();
-					});
-				});
-			});
-    </script>
+	test('<d2l-accordion> trigger test', function(done) {
+		var myEl = fixture('accordion-collapse-fixture');
+		flush(function() {
+			expect(myEl.items[0].opened).to.be.false;
+			myEl.items[0].$.trigger.click();
+			expect(myEl.items[0].opened).to.be.true;
+			done();
+		});
+	});
+});
+</script>
 	</body>
 </html>
