@@ -14,11 +14,9 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 		:host {
 				display: block;
 			}
-			.collapse-title.opened {
-				color: var(--d2l-color-celestuba);
-			}
 			#trigger {
 				@apply --layout-horizontal;
+				@apply --layout-center;
 				text-decoration: none;
 			}
 			#trigger, #trigger:visited, #trigger:hover, #trigger:active {
