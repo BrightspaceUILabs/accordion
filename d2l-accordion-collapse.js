@@ -22,13 +22,13 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			#trigger, #trigger:visited, #trigger:hover, #trigger:active {
 				color: inherit;
 			}
-			.flex {
+			.collapse-title[flex] {
 				@apply --layout-flex;
 			}
 		</style>
 
 		<a href="javascript:void(0)" id="trigger" on-tap="toggle" aria-controls="collapse" role="button">
-			<div class$="collapse-title [[_getConditionalClasses(flex, opened)]]">[[title]]<slot name="header"></slot>
+			<div class="collapse-title" flex$=[[flex]]>[[title]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
 				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
@@ -38,8 +38,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			<slot></slot>
 		</iron-collapse>
 	</template>
-
-	
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
@@ -53,9 +51,9 @@ document.head.appendChild($_documentContainer.content);
 Polymer({
 	is: 'd2l-accordion-collapse',
 	properties: {
-	/**
-	 * Label title
-	 */
+		/**
+		 * Label title
+		 */
 		title: {
 			type: String,
 			value: ''
@@ -157,17 +155,11 @@ Polymer({
 		}
 		if (this.opened) {
 			this.close();
-		}	else {
+		} else {
 			this.open();
 		}
 	},
 	_toggle: function(cond, t, f) { return cond ? t : f; },
-	_getConditionalClasses: function(flex, opened) {
-		var classes = [];
-		if (flex) { classes.push('flex'); }
-		if (opened) { classes.push('opened'); }
-		return classes.join(' ');
-	},
 	_onStateChanged: function(event) {
 		if (this.opened
 			&& event.detail.el !== this
