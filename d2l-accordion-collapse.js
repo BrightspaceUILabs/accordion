@@ -127,6 +127,7 @@ Polymer({
 			return;
 		}
 		window.addEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
+		this._collapseIronResizeHandler = this.$.collapse.addEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 
 	detached: function() {
@@ -134,6 +135,7 @@ Polymer({
 			return;
 		}
 		window.removeEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
+		this.$.collapse.removeEventListener('iron-resize', this._collapseIronResizeHandler);
 	},
 	open: function() {
 		if (this.disabled) {
@@ -197,5 +199,11 @@ Polymer({
 			return false;
 		}
 		return true;
+	},
+	_fireAccordionResizeEvent: function() {
+		var event = new CustomEvent('d2l-accordion-collapse-resize', {
+			bubbles: true
+		});
+		window.dispatchEvent(event);
 	}
 });
