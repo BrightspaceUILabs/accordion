@@ -18,7 +18,7 @@
     "test": "npm run test:lint && npm run test:polymer:local",
     "test:lint": "npm run test:lint:wc && npm run test:lint:js",
     "test:lint:js": "eslint . --ext .js,.html test/**/*.js test/**/*.html demo/**/*.js demo/**/*.html",
-    "test:lint:wc": "polymer lint",
+    "test:lint:wc": "polymer lint -i \"./*\" \"test\" \"demo\"",
     "test:polymer:local": "polymer test --skip-plugin sauce",
     "test:polymer:sauce": "polymer test --skip-plugin local"
   },
@@ -36,7 +36,7 @@
     "polymer-cli": "^1.9.2",
     "wct-browser-legacy": "^1.0.1"
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",

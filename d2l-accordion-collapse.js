@@ -27,7 +27,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			}
 		</style>
 
-		<a href="javascript:void(0)" id="trigger" on-tap="toggle" aria-controls="collapse" role="button">
+		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button">
 			<div class="collapse-title" flex$=[[flex]]>[[title]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
@@ -152,6 +152,7 @@ Polymer({
 		this._notifyStateChanged();
 	},
 	toggle: function() {
+		this.fire('d2l-accordion-collapse-clicked');
 		if (this.disabled) {
 			return;
 		}
