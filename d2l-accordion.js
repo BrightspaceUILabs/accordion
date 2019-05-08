@@ -15,7 +15,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion">
 	<slot></slot>
 	</template>
 
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
@@ -48,7 +48,7 @@ Polymer({
 	],
 	ready: function() {
 		this.selectable = 'd2l-accordion-collapse';
-		this.activateEvent = 'd2l-accordion-collapse-state-changed';
+		this.activateEvent = 'd2l-accordion-collapse-state-opened';
 		this.selectedAttribute = 'opened';
 	}
 });

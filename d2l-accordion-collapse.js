@@ -184,6 +184,9 @@ Polymer({
 		}
 	},
 	_notifyStateChanged: function() {
+		if (this.opened) {
+			this.fire('d2l-accordion-collapse-state-opened');
+		}
 		this.fire('d2l-accordion-collapse-state-changed', { opened: this.opened, el: this });
 		this.$.trigger.setAttribute('aria-expanded', this.opened);
 	},
