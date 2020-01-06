@@ -11,7 +11,7 @@ const $_documentContainer = document.createElement('template');
 $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 	<template strip-whitespace="">
 		<style is="custom-style">
-		:host {
+			:host {
 				display: block;
 			}
 			#trigger {
@@ -28,7 +28,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 		</style>
 
 		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button">
-			<div class="collapse-title" flex$=[[flex]]>[[title]]<slot name="header"></slot>
+			<div class="collapse-title" title="[[label]]" flex$=[[flex]]>[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
 				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
@@ -55,6 +55,13 @@ Polymer({
 		 * Label title
 		 */
 		title: {
+			type: String,
+			value: ''
+		},
+		/**
+		 * Label. Does not apply title to entire accordion
+		 */
+		label: {
 			type: String,
 			value: ''
 		},
