@@ -23,6 +23,16 @@
 			</template>
 		</test-fixture>
 
+		<test-fixture id="accordion-collapse-fixture-label">
+			<template>
+				<d2l-accordion>
+					<d2l-accordion-collapse label="Item 1">Test</d2l-accordion-collapse>
+					<d2l-accordion-collapse label="Item 2">Test</d2l-accordion-collapse>
+					<d2l-accordion-collapse label="Item 3">Test</d2l-accordion-collapse>
+				</d2l-accordion>
+			</template>
+		</test-fixture>
+
 		<script type="module">
 import '../d2l-accordion.js';
 /* global assert */
@@ -34,6 +44,9 @@ suite('Test <d2l-accordion>', function() {
 			expect(myEl.items[0].opened).to.be.false;
 			expect(myEl.items[1].opened).to.be.false;
 			expect(myEl.items[2].opened).to.be.false;
+			expect(myEl.items[0].$$('.collapse-title').title).to.equal('');
+			expect(myEl.items[1].$$('.collapse-title').title).to.equal('');
+			expect(myEl.items[2].$$('.collapse-title').title).to.equal('');
 			done();
 		});
 	});
@@ -58,6 +71,16 @@ suite('Test <d2l-accordion>', function() {
 			expect(myEl.items[0].opened).to.be.false;
 			myEl.items[0].$.trigger.click();
 			expect(myEl.items[0].opened).to.be.true;
+			done();
+		});
+	});
+
+	test('<d2l-accordion> label instead of title', function(done) {
+		var myEl = fixture('accordion-collapse-fixture-label');
+		flush(function() {
+			expect(myEl.items[0].$$('.collapse-title').title).to.equal('Item 1');
+			expect(myEl.items[1].$$('.collapse-title').title).to.equal('Item 2');
+			expect(myEl.items[2].$$('.collapse-title').title).to.equal('Item 3');
 			done();
 		});
 	});
