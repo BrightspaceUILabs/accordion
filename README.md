@@ -58,6 +58,42 @@ Example 4:
 </d2l-accordion-collapse>
 ```
 
+## Developing, Testing and Contributing
+
+After cloning the repo, run `npm install` to install dependencies.
+
+If you don't have it already, install the [Polymer CLI](https://www.polymer-project.org/2.0/docs/tools/polymer-cli) globally:
+
+```shell
+npm install -g polymer-cli
+```
+
+To start a [local web server](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#serve) that hosts the demo page and tests:
+
+```shell
+npm start
+```
+
+To access the demo page visit [http://127.0.0.1:8081/components/d2l-accordion/demo/](http://127.0.0.1:8081/components/d2l-accordion/demo/)
+
+To lint ([eslint](http://eslint.org/) and [Polymer lint](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#lint)):
+
+```shell
+npm run lint
+```
+
+To run unit tests locally using [Polymer test](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#tests):
+
+```shell
+npm run test:polymer:local
+```
+
+To lint AND run local unit tests:
+
+```shell
+npm test
+```
+
 ## Versioning & Releasing
 
 All version changes should obey [semantic versioning](https://semver.org/) rules.
