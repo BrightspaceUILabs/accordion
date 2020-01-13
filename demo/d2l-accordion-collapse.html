@@ -185,5 +185,23 @@ $_documentContainer.innerHTML = `<demo-snippet>
 
 document.body.appendChild($_documentContainer.content);
 </script>
+<script type="module">
+	const $_documentContainer = document.createElement('template');
+	
+	$_documentContainer.innerHTML = `<demo-snippet>
+		<template>
+			<d2l-accordion-collapse title="Summary and flex" flex>
+				<ul slot="summary">
+					<li>Availability starts 4/13/2020 and ends 4/23/2020</li>
+					<li>One release condition</li>
+					<li>Special access</li>
+				</ul>
+				Demo
+			</d2l-accordion-collapse>
+		</template>
+	</demo-snippet>`;
+	
+	document.body.appendChild($_documentContainer.content);
+	</script>
 	</body>
 </html>

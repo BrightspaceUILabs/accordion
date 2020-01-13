@@ -1,5 +1,6 @@
 import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-colors/d2l-colors.js';
+import { heading2Styles } from '@brightspace-ui/core/components/typography/styles.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-icons/tier1-icons.js';
 import '@polymer/iron-collapse/iron-collapse.js';
@@ -25,6 +26,21 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			.collapse-title[flex] {
 				@apply --layout-flex;
 			}
+			.collapse-title {
+				padding-left: 1rem;
+			}
+			::slotted([slot=summary]) {
+				padding-top: 1rem;
+				border-top: solid 1px var(--d2l-color-corundum);
+				color: var(--d2l-color-tungsten);
+				list-style-type: none;
+			}
+			::slotted(*){
+				padding-left: 1rem;
+			}
+			#trigger d2l-icon { 
+				@apply --layout-self-start;
+			}
 		</style>
 
 		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button">
@@ -34,6 +50,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 			</template>
 		</a>
+		<slot name="summary" display="[[opened]]"></slot>
 		<iron-collapse id="collapse" no-animation="[[noAnimation]]" opened="[[opened]]">
 			<slot></slot>
 		</iron-collapse>
