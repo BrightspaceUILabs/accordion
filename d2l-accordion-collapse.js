@@ -28,18 +28,19 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			}
 			.collapse-title {
 				padding-left: 1rem;
+				border-bottom: solid 1px var(--d2l-color-corundum);
 			}
 			::slotted([slot=summary]) {
 				padding-top: 1rem;
-				border-top: solid 1px var(--d2l-color-corundum);
 				color: var(--d2l-color-tungsten);
 				list-style-type: none;
-			}
-			::slotted(*){
 				padding-left: 1rem;
 			}
 			#trigger d2l-icon { 
 				@apply --layout-self-start;
+			}
+			.icon {
+				background-color: red;
 			}
 		</style>
 
@@ -47,12 +48,14 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			<div class="collapse-title" title="[[label]]" flex$=[[flex]]>[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
-				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
+				<d2l-icon class="icon" icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 			</template>
 		</a>
-		<slot name="summary" display="[[opened]]"></slot>
 		<iron-collapse id="collapse" no-animation="[[noAnimation]]" opened="[[opened]]">
 			<slot></slot>
+		</iron-collapse>
+		<iron-collapse no-animation="[[noAnimation]]" opened="[[!opened]]">
+			<slot class="summary" name="summary"></slot>
 		</iron-collapse>
 	</template>
 </dom-module>`;
