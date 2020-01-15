@@ -30,17 +30,20 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				padding-left: 1rem;
 				border-bottom: solid 1px var(--d2l-color-corundum);
 			}
-			::slotted([slot=summary]) {
-				padding-top: 1rem;
-				color: var(--d2l-color-tungsten);
-				list-style-type: none;
-				padding-left: 1rem;
-			}
 			#trigger d2l-icon { 
 				@apply --layout-self-start;
 			}
-			.icon {
-				background-color: red;
+			.content {
+				height: auto;
+				padding: 1px;
+				margin: -1px;
+			}
+			.content[opened] .summary {
+				display: none;
+				position: absolute;
+			}
+			.content .summary {
+				transition: all 300ms cubic-bezier(0.335, 0.010, 0.030, 1.360);
 			}
 		</style>
 
@@ -51,12 +54,14 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				<d2l-icon class="icon" icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 			</template>
 		</a>
-		<iron-collapse id="collapse" no-animation="[[noAnimation]]" opened="[[opened]]">
-			<slot></slot>
-		</iron-collapse>
-		<iron-collapse no-animation="[[noAnimation]]" opened="[[!opened]]">
-			<slot class="summary" name="summary"></slot>
-		</iron-collapse>
+		<div class="content" opened$="[[opened]]" >
+			<iron-collapse class="detail" no-animation="[[noAnimation]]" opened="[[opened]]">
+				<slot></slot>
+			</iron-collapse>
+			<div class="summary">
+				<slot name="summaryData"></slot>
+			</div
+		</div>
 	</template>
 </dom-module>`;
 
@@ -153,21 +158,20 @@ Polymer({
 		if (this.disabled) {
 			return;
 		}
-		window.addEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
-		this.$.collapse.addEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 
 	detached: function() {
 		if (this.disabled) {
 			return;
 		}
-		window.removeEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
-		this.$.collapse.removeEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 	open: function() {
 		if (this.disabled) {
 			return;
 		}
+		var butts = this.shadowRoot.querySelector(".content");
+		this.minHeight = butts.offsetHeight - 2;
+		butts.style.minHeight = this.minHeight + 'px';
 		this.opened = true;
 		this._notifyStateChanged();
 	},
