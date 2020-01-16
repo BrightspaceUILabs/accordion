@@ -1,6 +1,5 @@
 import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-colors/d2l-colors.js';
-import { heading2Styles } from '@brightspace-ui/core/components/typography/styles.js';
 import 'd2l-icons/d2l-icon.js';
 import 'd2l-icons/tier1-icons.js';
 import '@polymer/iron-collapse/iron-collapse.js';
@@ -45,7 +44,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			}
 			.summary {
 				opacity: 1;
-				transition: opacity 900ms ease;
+				transition: opacity 100ms ease;
 			}
 
 			iron-collapse {
@@ -61,7 +60,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			</template>
 		</a>
 		<div class="content" opened$="[[opened]]">
-			<iron-collapse id="detail-collapse" class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
+			<iron-collapse id="detail" class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
 				<slot></slot>
 			</iron-collapse>
 			<div class="summary">
@@ -164,19 +163,23 @@ Polymer({
 		if (this.disabled) {
 			return;
 		}
+		window.addEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
+		this.$.detail.addEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 
 	detached: function() {
 		if (this.disabled) {
 			return;
 		}
+		window.removeEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
+		this.$.detail.removeEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 	open: function() {
 		if (this.disabled) {
 			return;
 		}
 
-		var ironCollapse = this.shadowRoot.querySelector("#detail-collapse");
+		var ironCollapse = this.shadowRoot.querySelector("#detail");
 		var inTransition = ironCollapse.transitioning === true && ironCollapse.opened === false;
 
 		if( !inTransition ){
