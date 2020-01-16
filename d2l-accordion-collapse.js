@@ -45,11 +45,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			}
 			.summary {
 				opacity: 1;
-				transition: opacity 500ms ease;
+				transition: opacity 200ms ease;
 			}
 
 			iron-collapse {
-				--iron-collapse-transition-duration: 2s;
+				--iron-collapse-transition-duration: 1s;
 			}
 		</style>
 
@@ -61,7 +61,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			</template>
 		</a>
 		<div class="content" opened$="[[opened]]">
-			<iron-collapse class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
+			<iron-collapse id="detail-collapse" class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
 				<slot></slot>
 			</iron-collapse>
 			<div class="summary">
@@ -175,11 +175,17 @@ Polymer({
 		if (this.disabled) {
 			return;
 		}
-		var content = this.shadowRoot.querySelector(".content");
-		var summary = this.shadowRoot.querySelector('.summary');
-		content.style.minHeight = (content.offsetHeight - 2) + 'px';
-		summary.style.position = 'absolute';
-		summary.style.transitionDelay = '0ms';
+
+		var ironCollapse = this.shadowRoot.querySelector("#detail-collapse");
+		var isClosing = ironCollapse.transitioning === true && ironCollapse.opened === false;
+
+		if(!isClosing){
+			var content = this.shadowRoot.querySelector(".content");
+			var summary = this.shadowRoot.querySelector('.summary');
+			content.style.minHeight = (content.offsetHeight - 2) + 'px';
+			summary.style.position = 'absolute';
+			summary.style.transitionDelay = '0ms';
+		}
 		this.opened = true;
 		this._notifyStateChanged();
 	},
@@ -188,7 +194,7 @@ Polymer({
 			return;
 		}
 		var summary = this.shadowRoot.querySelector('.summary');
-		summary.style.transitionDelay = '1000ms';
+		summary.style.transitionDelay = '300ms';
 		this.opened = false;
 		this._notifyStateChanged();
 	},
