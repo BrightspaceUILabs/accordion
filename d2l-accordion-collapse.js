@@ -37,13 +37,19 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				height: auto;
 				padding: 1px;
 				margin: -1px;
+				position: relative;
+				overflow: hidden;
 			}
 			.content[opened] .summary {
-				display: none;
-				position: absolute;
+				opacity: 0;
 			}
-			.content .summary {
-				transition: all 300ms cubic-bezier(0.335, 0.010, 0.030, 1.360);
+			.summary {
+				opacity: 1;
+				transition: opacity 500ms ease;
+			}
+
+			iron-collapse {
+				--iron-collapse-transition-duration: 2s;
 			}
 		</style>
 
@@ -54,8 +60,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				<d2l-icon class="icon" icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 			</template>
 		</a>
-		<div class="content" opened$="[[opened]]" >
-			<iron-collapse class="detail" no-animation="[[noAnimation]]" opened="[[opened]]">
+		<div class="content" opened$="[[opened]]">
+			<iron-collapse class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
 				<slot></slot>
 			</iron-collapse>
 			<div class="summary">
@@ -169,9 +175,11 @@ Polymer({
 		if (this.disabled) {
 			return;
 		}
-		var butts = this.shadowRoot.querySelector(".content");
-		this.minHeight = butts.offsetHeight - 2;
-		butts.style.minHeight = this.minHeight + 'px';
+		var content = this.shadowRoot.querySelector(".content");
+		var summary = this.shadowRoot.querySelector('.summary');
+		content.style.minHeight = (content.offsetHeight - 2) + 'px';
+		summary.style.position = 'absolute';
+		summary.style.transitionDelay = '0ms';
 		this.opened = true;
 		this._notifyStateChanged();
 	},
@@ -179,6 +187,8 @@ Polymer({
 		if (this.disabled) {
 			return;
 		}
+		var summary = this.shadowRoot.querySelector('.summary');
+		summary.style.transitionDelay = '1000ms';
 		this.opened = false;
 		this._notifyStateChanged();
 	},
@@ -191,6 +201,17 @@ Polymer({
 			this.close();
 		} else {
 			this.open();
+		}
+	},
+	_handleTransitionChanged(event) {
+		var isClosed =
+			event.target.opened === false &&
+			event.target.transitioning === false;
+		if( isClosed ) {
+			var content = this.shadowRoot.querySelector(".content");
+			var summary = this.shadowRoot.querySelector('.summary');
+			content.style.minHeight = '0px';
+			summary.style.position = 'static';
 		}
 	},
 	_toggle: function(cond, t, f) { return cond ? t : f; },
