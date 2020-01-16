@@ -45,11 +45,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			}
 			.summary {
 				opacity: 1;
-				transition: opacity 200ms ease;
+				transition: opacity 900ms ease;
 			}
 
 			iron-collapse {
-				--iron-collapse-transition-duration: 1s;
+				--iron-collapse-transition-duration: 800ms;
 			}
 		</style>
 
@@ -177,9 +177,9 @@ Polymer({
 		}
 
 		var ironCollapse = this.shadowRoot.querySelector("#detail-collapse");
-		var isClosing = ironCollapse.transitioning === true && ironCollapse.opened === false;
+		var inTransition = ironCollapse.transitioning === true && ironCollapse.opened === false;
 
-		if(!isClosing){
+		if( !inTransition ){
 			var content = this.shadowRoot.querySelector(".content");
 			var summary = this.shadowRoot.querySelector('.summary');
 			content.style.minHeight = (content.offsetHeight - 2) + 'px';
@@ -194,7 +194,7 @@ Polymer({
 			return;
 		}
 		var summary = this.shadowRoot.querySelector('.summary');
-		summary.style.transitionDelay = '300ms';
+		summary.style.transitionDelay = '350ms';
 		this.opened = false;
 		this._notifyStateChanged();
 	},
