@@ -18,6 +18,7 @@ Polymer-based widget that displays a list of collapsible components. When collap
 
 #### Slots:
 * header - content to display under the title
+* summaryData - content that summarizes the data inside the accordion
 
 Example 1:
 ```html

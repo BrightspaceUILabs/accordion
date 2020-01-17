@@ -19,18 +19,19 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				@apply --layout-center;
 				text-decoration: none;
 			}
+			#trigger[border] {
+				border-bottom: solid 1px var(--d2l-color-corundum);
+				padding-bottom: 0.4rem;
+				margin-bottom: 0.4rem;
+			}
 			#trigger, #trigger:visited, #trigger:hover, #trigger:active {
 				color: inherit;
 			}
 			.collapse-title[flex] {
 				@apply --layout-flex;
 			}
-			.collapse-title {
-				padding-left: 1rem;
-				border-bottom: solid 1px var(--d2l-color-corundum);
-			}
-			#trigger d2l-icon { 
-				@apply --layout-self-start;
+			.collapse-title:not([flex]) {
+				margin-right: 0.3rem;
 			}
 			.content {
 				height: auto;
@@ -46,13 +47,12 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				opacity: 1;
 				transition: opacity 100ms ease;
 			}
-
 			iron-collapse {
 				--iron-collapse-transition-duration: 800ms;
 			}
 		</style>
 
-		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button">
+		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" border$=[[border]]>
 			<div class="collapse-title" title="[[label]]" flex$=[[flex]]>[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
@@ -134,9 +134,16 @@ Polymer({
 			value: false
 		},
 		/**
-		 * Whether to use or not flex layout.
+		 * Whether or not to use flex layout.
 		 */
 		flex: {
+			type: Boolean,
+			value: false
+		},
+		/**
+		 * Whether or not to add a border between the header and the content.
+		 */
+		border: {
 			type: Boolean,
 			value: false
 		},
@@ -179,11 +186,11 @@ Polymer({
 			return;
 		}
 
-		var ironCollapse = this.shadowRoot.querySelector("#detail");
+		var ironCollapse = this.shadowRoot.querySelector('#detail');
 		var inTransition = ironCollapse.transitioning === true && ironCollapse.opened === false;
 
-		if( !inTransition ){
-			var content = this.shadowRoot.querySelector(".content");
+		if (!inTransition) {
+			var content = this.shadowRoot.querySelector('.content');
 			var summary = this.shadowRoot.querySelector('.summary');
 			content.style.minHeight = (content.offsetHeight - 2) + 'px';
 			summary.style.position = 'absolute';
@@ -216,8 +223,8 @@ Polymer({
 		var isClosed =
 			event.target.opened === false &&
 			event.target.transitioning === false;
-		if( isClosed ) {
-			var content = this.shadowRoot.querySelector(".content");
+		if (isClosed) {
+			var content = this.shadowRoot.querySelector('.content');
 			var summary = this.shadowRoot.querySelector('.summary');
 			content.style.minHeight = '0px';
 			summary.style.position = 'static';

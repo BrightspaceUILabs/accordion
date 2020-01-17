@@ -38,6 +38,19 @@ $_documentContainer.innerHTML = `<demo-snippet>
 
 document.body.appendChild($_documentContainer.content);
 </script>
+<script type="module">
+	const $_documentContainer = document.createElement('template');
+	
+	$_documentContainer.innerHTML = `<demo-snippet>
+				<template>
+					<d2l-accordion-collapse title="Regular with border" opened="" border>
+						Demo
+					</d2l-accordion-collapse>
+				</template>
+			</demo-snippet>`;
+	
+	document.body.appendChild($_documentContainer.content);
+	</script>
 		<script type="module">
 const $_documentContainer = document.createElement('template');
 
@@ -190,9 +203,32 @@ document.body.appendChild($_documentContainer.content);
 	
 	$_documentContainer.innerHTML = `<demo-snippet>
 		<template>
-			<d2l-accordion-collapse flex>
-				<h2 slot="header">Custom header, summary and flex</h2>
+			<d2l-accordion-collapse label="Summary and flex" flex>
 				<ul slot="summaryData">
+					<li>Availability starts 4/13/2020 and ends 4/23/2020</li>
+					<li>One release condition</li>
+					<li>Special access</li>
+				</ul>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lectus erat, dignissim quis efficitur non, iaculis nec ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla eu orci sed tristique. Aliquam pellentesque turpis ut vehicula volutpat. Quisque euismod felis nec dolor scelerisque, ullamcorper gravida ante suscipit. Nam eget libero vel mauris tincidunt molestie. Maecenas tortor purus, sodales vel lacus vel, molestie tempor tellus.
+
+Proin eget accumsan neque. Vestibulum semper justo erat, vitae scelerisque neque sollicitudin eget. Suspendisse vulputate vel risus sit amet vehicula. In diam orci, convallis sed elementum ut, gravida at risus. Phasellus posuere erat eu pulvinar congue. Praesent nibh nibh, tempor in ultricies et, vestibulum nec urna. Cras varius vestibulum velit, porttitor venenatis mi iaculis vel. Etiam eget eleifend metus. Donec ac nisl condimentum, venenatis massa eu, sodales quam. Aliquam egestas metus vel magna blandit placerat. Nullam gravida ultrices sapien, eget aliquet lorem gravida sed. Pellentesque ut euismod orci, at vestibulum velit. Nam faucibus sagittis aliquam. Suspendisse et libero id elit interdum eleifend. In ac nisi quis est laoreet semper. Nam eget scelerisque arcu, a pretium libero.
+
+Maecenas sed tortor ac risus consectetur viverra ac sit amet purus. In tempor scelerisque augue in pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nulla sapien, porttitor a blandit quis, convallis blandit justo. Sed luctus vitae nisl a consectetur. Proin interdum orci ex, non sodales diam faucibus in. Fusce et dolor ac ipsum vulputate pretium. Quisque nec vehicula quam.
+</p>
+			</d2l-accordion-collapse>
+		</template>
+	</demo-snippet>`;
+	
+	document.body.appendChild($_documentContainer.content);
+	</script>
+<script type="module">
+	const $_documentContainer = document.createElement('template');
+	
+	$_documentContainer.innerHTML = `<demo-snippet>
+		<template>
+			<d2l-accordion-collapse flex border>
+				<h2 slot="header">Custom header, summary, border and flex 💪</h2>
+				<ul slot="summaryData" style="list-style-type: none; padding-left: 0px;">
 					<li>Availability starts 4/13/2020 and ends 4/23/2020</li>
 					<li>One release condition</li>
 					<li>Special access</li>
