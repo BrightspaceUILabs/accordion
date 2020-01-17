@@ -64,6 +64,18 @@ Example 4:
 </d2l-accordion-collapse>
 ```
 
+Example 5:
+```html
+<d2l-accordion-collapse flex border>
+	<h2 slot="header">Custom header, summary, border and flex 💪</h2>
+	<ul slot="summaryData" style="list-style-type: none; padding-left: 0px;">
+		<li>Availability starts 4/13/2020 and ends 4/23/2020</li>
+		<li>One release condition</li>
+		<li>Special access</li>
+	</ul>
+	<p>Stuff inside of the accordion goes here</p>
+</d2l-accordion-collapse>
+```
 ## Developing, Testing and Contributing
 
 After cloning the repo, run `npm install` to install dependencies.
