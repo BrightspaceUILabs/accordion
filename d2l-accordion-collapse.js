@@ -56,7 +56,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			<div class="collapse-title" title="[[label]]" flex$=[[flex]]>[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
-				<d2l-icon class="icon" icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
+				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 			</template>
 		</a>
 		<div class="content" opened$="[[opened]]">
