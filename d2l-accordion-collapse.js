@@ -229,8 +229,8 @@ Polymer({
 		if (isClosed) {
 			const content = this.shadowRoot.querySelector('.content');
 			const summary = this.shadowRoot.querySelector('.summary');
-			content.style.setProperty("closed", true);
-			summary.style.setProperty("closed", true);
+			content.style.setProperty('closed', true);
+			summary.style.setProperty('closed', true);
 		}
 	},
 	_toggle: function(cond, t, f) { return cond ? t : f; },
