@@ -19,7 +19,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				@apply --layout-center;
 				text-decoration: none;
 			}
-			#trigger[border] {
+			#trigger[data-border] {
 				border-bottom: solid 1px var(--d2l-color-corundum);
 				padding-bottom: 0.4rem;
 				margin-bottom: 0.4rem;
@@ -27,12 +27,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			#trigger, #trigger:visited, #trigger:hover, #trigger:active {
 				color: inherit;
 			}
-			.collapse-title[flex] {
+			:host([flex]) .collapse-title {
 				@apply --layout-flex;
 			}
-			.collapse-title:not([flex]) {
-				margin-right: 0.3rem;
-			}
+		
 			.content {
 				height: auto;
 				padding: 1px;
@@ -40,32 +38,39 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				position: relative;
 				overflow: hidden;
 			}
-			.content[opened] .summary {
+			.content[data-opened] .summary {
 				opacity: 0;
 			}
 			.summary {
 				opacity: 1;
 				transition: opacity 100ms ease;
+				transition-delay: 350ms;
 			}
 			iron-collapse {
 				--iron-collapse-transition-duration: 800ms;
 			}
+			:host([_state="closed"]) .content { 
+				min-height: 0;
+			}
+			:host([_state="closed"]) .summary { 
+				position: static;
+			}
 		</style>
 
-		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" border$=[[border]]>
-			<div class="collapse-title" title="[[label]]" flex$=[[flex]]>[[title]][[label]]<slot name="header"></slot>
+		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" data-border$="[[border]]">
+			<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
 				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 			</template>
 		</a>
-		<div class="content" opened$="[[opened]]">
+		<div class="content" data-opened$="[[opened]]">
 			<iron-collapse id="detail" class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
 				<slot></slot>
 			</iron-collapse>
 			<div class="summary">
 				<slot name="summaryData"></slot>
-			</div
+			</div>
 		</div>
 	</template>
 </dom-module>`;
@@ -186,12 +191,12 @@ Polymer({
 			return;
 		}
 
-		var ironCollapse = this.shadowRoot.querySelector('#detail');
-		var inTransition = ironCollapse.transitioning === true && ironCollapse.opened === false;
+		const ironCollapse = this.$.detail;
+		const inTransition = ironCollapse.transitioning === true && ironCollapse.opened === false;
 
 		if (!inTransition) {
-			var content = this.shadowRoot.querySelector('.content');
-			var summary = this.shadowRoot.querySelector('.summary');
+			const content = this.shadowRoot.querySelector('.content');
+			const summary = this.shadowRoot.querySelector('.summary');
 			content.style.minHeight = (content.offsetHeight - 2) + 'px';
 			summary.style.position = 'absolute';
 			summary.style.transitionDelay = '0ms';
@@ -203,8 +208,6 @@ Polymer({
 		if (this.disabled) {
 			return;
 		}
-		var summary = this.shadowRoot.querySelector('.summary');
-		summary.style.transitionDelay = '350ms';
 		this.opened = false;
 		this._notifyStateChanged();
 	},
@@ -224,10 +227,10 @@ Polymer({
 			event.target.opened === false &&
 			event.target.transitioning === false;
 		if (isClosed) {
-			var content = this.shadowRoot.querySelector('.content');
-			var summary = this.shadowRoot.querySelector('.summary');
-			content.style.minHeight = '0px';
-			summary.style.position = 'static';
+			const content = this.shadowRoot.querySelector('.content');
+			const summary = this.shadowRoot.querySelector('.summary');
+			content.style.setProperty("closed", true);
+			summary.style.setProperty("closed", true);
 		}
 	},
 	_toggle: function(cond, t, f) { return cond ? t : f; },
