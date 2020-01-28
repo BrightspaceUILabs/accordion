@@ -223,7 +223,7 @@ Polymer({
 		}
 	},
 	_handleTransitionChanged(event) {
-		var isClosed =
+		const isClosed =
 			event.target.opened === false &&
 			event.target.transitioning === false;
 		if (isClosed) {
