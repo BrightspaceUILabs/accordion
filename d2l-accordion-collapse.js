@@ -30,7 +30,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			:host([flex]) .collapse-title {
 				@apply --layout-flex;
 			}
-		
 			.content {
 				height: auto;
 				padding: 1px;
@@ -43,17 +42,20 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			}
 			.summary {
 				opacity: 1;
-				transition: opacity 100ms ease;
-				transition-delay: 350ms;
+				transition: opacity 300ms ease;
 			}
 			iron-collapse {
-				--iron-collapse-transition-duration: 800ms;
+				--iron-collapse-transition-duration: 1000ms;
 			}
 			:host([_state="closed"]) .content { 
 				min-height: 0;
 			}
 			:host([_state="closed"]) .summary { 
 				position: static;
+			}
+			:host([_state="opened"]) .summary { 
+				position: absolute;
+				transition-delay: 0;
 			}
 		</style>
 
@@ -164,6 +166,14 @@ Polymer({
 		 */
 		_boundListener: {
 			type: Function
+		},
+		/**
+		 * The current state of the accordion (opened, closed)
+		 */
+		_state: {
+			type: String,
+			reflectToAttribute: true,
+			value: 'closed'
 		}
 	},
 	ready: function() {
@@ -196,10 +206,8 @@ Polymer({
 
 		if (!inTransition) {
 			const content = this.shadowRoot.querySelector('.content');
-			const summary = this.shadowRoot.querySelector('.summary');
 			content.style.minHeight = (content.offsetHeight - 2) + 'px';
-			summary.style.position = 'absolute';
-			summary.style.transitionDelay = '0ms';
+			this._state = 'opened';
 		}
 		this.opened = true;
 		this._notifyStateChanged();
@@ -223,14 +231,16 @@ Polymer({
 		}
 	},
 	_handleTransitionChanged(event) {
-		const isClosed =
-			event.target.opened === false &&
-			event.target.transitioning === false;
+		const isClosed = 
+			event.target.opened === false && event.target.transitioning === false;
+		const isOpened = 
+			event.target.opened === true && event.target.transitioning === false;
 		if (isClosed) {
+			this._state = 'closed';
 			const content = this.shadowRoot.querySelector('.content');
-			const summary = this.shadowRoot.querySelector('.summary');
-			content.style.setProperty('closed', true);
-			summary.style.setProperty('closed', true);
+			content.style.minHeight = 0;
+		}else if(isOpened){
+			this._state = 'opened';
 		}
 	},
 	_toggle: function(cond, t, f) { return cond ? t : f; },
