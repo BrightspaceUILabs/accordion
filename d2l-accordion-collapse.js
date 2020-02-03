@@ -231,15 +231,15 @@ Polymer({
 		}
 	},
 	_handleTransitionChanged(event) {
-		const isClosed = 
+		const isClosed =
 			event.target.opened === false && event.target.transitioning === false;
-		const isOpened = 
+		const isOpened =
 			event.target.opened === true && event.target.transitioning === false;
 		if (isClosed) {
 			this._state = 'closed';
 			const content = this.shadowRoot.querySelector('.content');
 			content.style.minHeight = 0;
-		}else if(isOpened){
+		} else if (isOpened) {
 			this._state = 'opened';
 		}
 	},
