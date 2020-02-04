@@ -71,7 +71,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				<slot></slot>
 			</iron-collapse>
 			<div class="summary">
-				<slot name="summaryData"></slot>
+				<slot name="summary"></slot>
 			</div>
 		</div>
 	</template>
