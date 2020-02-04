@@ -18,6 +18,7 @@ Polymer-based widget that displays a list of collapsible components. When collap
 
 #### Slots:
 * header - content to display under the title
+* summary - content that summarizes the data inside the accordion
 
 Example 1:
 ```html
@@ -63,6 +64,18 @@ Example 4:
 </d2l-accordion-collapse>
 ```
 
+Example 5:
+```html
+<d2l-accordion-collapse flex border>
+	<h2 slot="header">Custom header, summary, border and flex 💪</h2>
+	<ul slot="summary" style="list-style-type: none; padding-left: 0px;">
+		<li>Availability starts 4/13/2020 and ends 4/23/2020</li>
+		<li>One release condition</li>
+		<li>Special access</li>
+	</ul>
+	<p>Stuff inside of the accordion goes here</p>
+</d2l-accordion-collapse>
+```
 ## Developing, Testing and Contributing
 
 After cloning the repo, run `npm install` to install dependencies.

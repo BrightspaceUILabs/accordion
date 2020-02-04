@@ -19,24 +19,61 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 				@apply --layout-center;
 				text-decoration: none;
 			}
+			#trigger[data-border] {
+				border-bottom: solid 1px var(--d2l-color-corundum);
+				padding-bottom: 0.4rem;
+				margin-bottom: 0.4rem;
+			}
 			#trigger, #trigger:visited, #trigger:hover, #trigger:active {
 				color: inherit;
 			}
-			.collapse-title[flex] {
+			:host([flex]) .collapse-title {
 				@apply --layout-flex;
+			}
+			.content {
+				height: auto;
+				padding: 1px;
+				margin: -1px;
+				position: relative;
+				overflow: hidden;
+			}
+			.content[data-opened] .summary {
+				opacity: 0;
+			}
+			.summary {
+				opacity: 1;
+				transition: opacity 300ms ease;
+			}
+			iron-collapse {
+				--iron-collapse-transition-duration: 1000ms;
+			}
+			:host([_state="closed"]) .content { 
+				min-height: 0;
+			}
+			:host([_state="closed"]) .summary { 
+				position: static;
+			}
+			:host([_state="opened"]) .summary { 
+				position: absolute;
+				transition-delay: 0;
 			}
 		</style>
 
-		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button">
-			<div class="collapse-title" title="[[label]]" flex$=[[flex]]>[[title]][[label]]<slot name="header"></slot>
+		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" data-border$="[[border]]">
+			<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
 				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 			</template>
 		</a>
-		<iron-collapse id="collapse" no-animation="[[noAnimation]]" opened="[[opened]]">
-			<slot></slot>
-		</iron-collapse>
+		<div class="content" data-opened$="[[opened]]">
+			<iron-collapse id="detail" class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
+				<slot></slot>
+			</iron-collapse>
+			<div class="summary">
+				<slot name="summary"></slot>
+			</div>
+		</div>
 	</template>
 </dom-module>`;
 
@@ -104,9 +141,16 @@ Polymer({
 			value: false
 		},
 		/**
-		 * Whether to use or not flex layout.
+		 * Whether or not to use flex layout.
 		 */
 		flex: {
+			type: Boolean,
+			value: false
+		},
+		/**
+		 * Whether or not to add a border between the header and the content.
+		 */
+		border: {
 			type: Boolean,
 			value: false
 		},
@@ -122,6 +166,14 @@ Polymer({
 		 */
 		_boundListener: {
 			type: Function
+		},
+		/**
+		 * The current state of the accordion (opened, closed)
+		 */
+		_state: {
+			type: String,
+			reflectToAttribute: true,
+			value: 'closed'
 		}
 	},
 	ready: function() {
@@ -134,7 +186,7 @@ Polymer({
 			return;
 		}
 		window.addEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
-		this.$.collapse.addEventListener('iron-resize', this._fireAccordionResizeEvent);
+		this.$.detail.addEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 
 	detached: function() {
@@ -142,11 +194,20 @@ Polymer({
 			return;
 		}
 		window.removeEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
-		this.$.collapse.removeEventListener('iron-resize', this._fireAccordionResizeEvent);
+		this.$.detail.removeEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 	open: function() {
 		if (this.disabled) {
 			return;
+		}
+
+		const ironCollapse = this.$.detail;
+		const inTransition = ironCollapse.transitioning === true && ironCollapse.opened === false;
+
+		if (!inTransition) {
+			const content = this.shadowRoot.querySelector('.content');
+			content.style.minHeight = (content.offsetHeight - 2) + 'px';
+			this._state = 'opened';
 		}
 		this.opened = true;
 		this._notifyStateChanged();
@@ -167,6 +228,19 @@ Polymer({
 			this.close();
 		} else {
 			this.open();
+		}
+	},
+	_handleTransitionChanged(event) {
+		const isClosed =
+			event.target.opened === false && event.target.transitioning === false;
+		const isOpened =
+			event.target.opened === true && event.target.transitioning === false;
+		if (isClosed) {
+			this._state = 'closed';
+			const content = this.shadowRoot.querySelector('.content');
+			content.style.minHeight = 0;
+		} else if (isOpened) {
+			this._state = 'opened';
 		}
 	},
 	_toggle: function(cond, t, f) { return cond ? t : f; },
