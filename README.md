@@ -15,7 +15,7 @@ Polymer-based widget that displays a list of collapsible components. When collap
 * noIcons - hide the expand/collapse icon
 * opened - container is opened by default. Do not use this attribute when inside the **d2l-accordion** as the **d2l-accordion** does not monitor opened state of the items at the start. In this case, use `selected` or `selectedValue` **d2l-accordion** attributes instead.
 * disabled - container cannot be expanded or collapsed
-* border - show a border between the summary and the title
+* headerBorder - show a border between the header and the summary/content
 
 #### Slots:
 * header - content to display under the title
@@ -67,7 +67,7 @@ Example 4:
 
 Example 5:
 ```html
-<d2l-accordion-collapse flex border>
+<d2l-accordion-collapse flex header-border>
 	<h2 slot="header">Custom header, summary, border and flex 💪</h2>
 	<ul slot="summary" style="list-style-type: none; padding-left: 0px;">
 		<li>Availability starts 4/13/2020 and ends 4/23/2020</li>

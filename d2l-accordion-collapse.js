@@ -42,10 +42,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			}
 			.summary {
 				opacity: 1;
-				transition: opacity 300ms ease;
+				transition: opacity 500ms ease;
 			}
 			iron-collapse {
-				--iron-collapse-transition-duration: 1000ms;
+				--iron-collapse-transition-duration: 700ms;
 			}
 			:host([_state="closed"]) .content { 
 				min-height: 0;
@@ -55,11 +55,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 			}
 			:host([_state="opened"]) .summary { 
 				position: absolute;
-				transition-delay: 0;
+				transition-delay: 500ms;
 			}
 		</style>
 
-		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" data-border$="[[border]]">
+		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" data-border$="[[headerBorder]]">
 			<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
@@ -150,7 +150,7 @@ Polymer({
 		/**
 		 * Whether or not to add a border between the header and the content.
 		 */
-		border: {
+		headerBorder: {
 			type: Boolean,
 			value: false
 		},
