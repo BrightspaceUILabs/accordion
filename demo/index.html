@@ -1,123 +1,100 @@
 <!doctype html>
 <html>
 	<head>
-		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script type="module" src="/node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-		<script type="module" src="/node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
-		<script type="module" src="../accordion.js"></script>
-
-		<!-- FIXME(polymer-modulizer):
-		These imperative modules that innerHTML your HTML are
-		a hacky way to be sure that any mixins in included style
-		modules are ready before any elements that reference them are
-		instantiated, otherwise the CSS @apply mixin polyfill won't be
-		able to expand the underlying CSS custom properties.
-		See: https://github.com/Polymer/polymer-modulizer/issues/154
-		-->
-	<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-			<style is="custom-style" include="demo-pages-shared-styles">
-			</style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<link rel="stylesheet" href="/node_modules/@brightspace-ui/core/components/demo/styles.css" type="text/css">
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script type="module">
+			import '/node_modules/@brightspace-ui/core/components/demo/demo-page.js';
+			import '../accordion.js';
+		</script>
 	</head>
-	<body>
-		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<demo-snippet>
-			<template>
-				<d2l-labs-accordion>
-					<d2l-labs-accordion-collapse title="Regular">
-						Demo
-					</d2l-labs-accordion-collapse>
-					<div>This text is always shown</div>
-					<d2l-labs-accordion-collapse title="Flex" flex="">
-						Demo
-					</d2l-labs-accordion-collapse>
-				</d2l-labs-accordion>
-			</template>
-		</demo-snippet>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<demo-snippet>
-			<template>
-				<d2l-labs-accordion auto-close="">
-					<d2l-labs-accordion-collapse title="AutoClose">
-						<d2l-labs-accordion-collapse title="- Child 1">
-							<d2l-labs-accordion-collapse title="-- Grandchild 1">
-								Demo<br>Demo<br>Demo
+	<body unresolved>
+		<d2l-demo-page page-title="d2l-labs-accordion">
+			<h3>Simple</h3>
+			<d2l-demo-snippet>
+				<template>
+					<d2l-labs-accordion>
+						<d2l-labs-accordion-collapse title="Regular">
+							Demo
+						</d2l-labs-accordion-collapse>
+						<div>This text is always shown</div>
+						<d2l-labs-accordion-collapse title="Flex" flex="">
+							Demo
+						</d2l-labs-accordion-collapse>
+					</d2l-labs-accordion>
+				</template>
+			</d2l-demo-snippet>
+			
+			<h3>Auto-close</h3>
+			<d2l-demo-snippet>
+				<template>
+					<d2l-labs-accordion auto-close>
+						<d2l-labs-accordion-collapse title="AutoClose">
+							<d2l-labs-accordion-collapse title="- Child 1">
+								<d2l-labs-accordion-collapse title="-- Grandchild 1">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
+								<d2l-labs-accordion-collapse title="-- Grandchild 2">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
 							</d2l-labs-accordion-collapse>
-							<d2l-labs-accordion-collapse title="-- Grandchild 2">
-								Demo<br>Demo<br>Demo
+							<d2l-labs-accordion-collapse title="- Child 2">
+								<d2l-labs-accordion-collapse title="-- Grandchild 1">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
+								<d2l-labs-accordion-collapse title="-- Grandchild 2">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
 							</d2l-labs-accordion-collapse>
 						</d2l-labs-accordion-collapse>
-						<d2l-labs-accordion-collapse title="- Child 2">
-							<d2l-labs-accordion-collapse title="-- Grandchild 1">
-								Demo<br>Demo<br>Demo
+					</d2l-labs-accordion>
+					<d2l-labs-accordion>
+						<d2l-labs-accordion-collapse title="Not AutoClose">
+							<d2l-labs-accordion-collapse title="- Child 1">
+								<d2l-labs-accordion-collapse title="-- Grandchild 1">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
+								<d2l-labs-accordion-collapse title="-- Grandchild 2">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
 							</d2l-labs-accordion-collapse>
-							<d2l-labs-accordion-collapse title="-- Grandchild 2">
-								Demo<br>Demo<br>Demo
-							</d2l-labs-accordion-collapse>
-						</d2l-labs-accordion-collapse>
-					</d2l-labs-accordion-collapse>
-				</d2l-labs-accordion>
-				<d2l-labs-accordion>
-					<d2l-labs-accordion-collapse title="Not AutoClose">
-						<d2l-labs-accordion-collapse title="- Child 1">
-							<d2l-labs-accordion-collapse title="-- Grandchild 1">
-								Demo<br>Demo<br>Demo
-							</d2l-labs-accordion-collapse>
-							<d2l-labs-accordion-collapse title="-- Grandchild 2">
-								Demo<br>Demo<br>Demo
-							</d2l-labs-accordion-collapse>
-						</d2l-labs-accordion-collapse>
-						<d2l-labs-accordion-collapse title="- Child 2">
-							<d2l-labs-accordion-collapse title="-- Grandchild 1">
-								Demo<br>Demo<br>Demo
-							</d2l-labs-accordion-collapse>
-							<d2l-labs-accordion-collapse title="-- Grandchild 2">
-								Demo<br>Demo<br>Demo
+							<d2l-labs-accordion-collapse title="- Child 2">
+								<d2l-labs-accordion-collapse title="-- Grandchild 1">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
+								<d2l-labs-accordion-collapse title="-- Grandchild 2">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
 							</d2l-labs-accordion-collapse>
 						</d2l-labs-accordion-collapse>
-					</d2l-labs-accordion-collapse>
-				</d2l-labs-accordion>
-				<d2l-labs-accordion auto-close="">
-					<d2l-labs-accordion-collapse title="AutoClose with Some Child Accordions Disabled">
-						<d2l-labs-accordion-collapse title="- Child 1 (opened/disabled)" opened="" disabled="">
-							<d2l-labs-accordion-collapse title="-- Grandchild 1">
-								Demo<br>Demo<br>Demo
+					</d2l-labs-accordion>
+					<d2l-labs-accordion auto-close="">
+						<d2l-labs-accordion-collapse title="AutoClose with Some Child Accordions Disabled">
+							<d2l-labs-accordion-collapse title="- Child 1 (opened/disabled)" opened="" disabled="">
+								<d2l-labs-accordion-collapse title="-- Grandchild 1">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
+								<d2l-labs-accordion-collapse title="-- Grandchild 2">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
 							</d2l-labs-accordion-collapse>
-							<d2l-labs-accordion-collapse title="-- Grandchild 2">
-								Demo<br>Demo<br>Demo
+							<d2l-labs-accordion-collapse title="- Child 2">
+								<d2l-labs-accordion-collapse title="-- Grandchild 1 (closed/disabled)" disabled="">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
+								<d2l-labs-accordion-collapse title="-- Grandchild 2 (opened/disabled)" opened="" disabled="">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
+								<d2l-labs-accordion-collapse title="-- Grandchild 3" d="">
+									Demo<br>Demo<br>Demo
+								</d2l-labs-accordion-collapse>
 							</d2l-labs-accordion-collapse>
 						</d2l-labs-accordion-collapse>
-						<d2l-labs-accordion-collapse title="- Child 2">
-							<d2l-labs-accordion-collapse title="-- Grandchild 1 (closed/disabled)" disabled="">
-								Demo<br>Demo<br>Demo
-							</d2l-labs-accordion-collapse>
-							<d2l-labs-accordion-collapse title="-- Grandchild 2 (opened/disabled)" opened="" disabled="">
-								Demo<br>Demo<br>Demo
-							</d2l-labs-accordion-collapse>
-							<d2l-labs-accordion-collapse title="-- Grandchild 3" d="">
-								Demo<br>Demo<br>Demo
-							</d2l-labs-accordion-collapse>
-						</d2l-labs-accordion-collapse>
-					</d2l-labs-accordion-collapse>
-				</d2l-labs-accordion>
-			</template>
-		</demo-snippet>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-
+					</d2l-labs-accordion>
+				</template>
+			</d2l-demo-snippet>
+		</d2l-demo-page>
 	</body>
 </html>

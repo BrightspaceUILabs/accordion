@@ -1,10 +1,9 @@
 import '@polymer/polymer/polymer-legacy.js';
-import 'd2l-colors/d2l-colors.js';
-import 'd2l-icons/d2l-icon.js';
-import 'd2l-icons/tier1-icons.js';
+import '@brightspace-ui/core/components/colors/colors.js';
+import '@brightspace-ui/core/components/icons/icon.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import 'd2l-polymer-behaviors/d2l-dom.js';
+import { findComposedAncestor, isComposedAncestor } from '@brightspace-ui/core/helpers/dom.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 const $_documentContainer = document.createElement('template');
 
@@ -251,14 +250,14 @@ Polymer({
 		) {
 			/* close an opened child */
 			if (!event.detail.opened
-				&& D2L.Dom.isComposedAncestor(event.detail.el, this)
+				&& isComposedAncestor(event.detail.el, this)
 			) {
 				this.opened = false;
 			}
 			/* close an opened sibling */
 			if (event.detail.opened
-				&& !D2L.Dom.isComposedAncestor(event.detail.el, this)
-				&& !D2L.Dom.isComposedAncestor(this, event.detail.el)
+				&& !isComposedAncestor(event.detail.el, this)
+				&& !isComposedAncestor(this, event.detail.el)
 			) {
 				this.opened = false;
 			}
@@ -272,7 +271,7 @@ Polymer({
 		this.$.trigger.setAttribute('aria-expanded', this.opened);
 	},
 	_haveSharedAutoCloseAccordionAncestor: function(node1, node2) {
-		var accordionAncestor = D2L.Dom.findComposedAncestor(node1, function(elem) {
+		var accordionAncestor = findComposedAncestor(node1, function(elem) {
 			if (elem.isAccordion && elem.autoClose) {
 				return true;
 			}
@@ -280,7 +279,7 @@ Polymer({
 		if (!accordionAncestor) {
 			return false;
 		}
-		if (!D2L.Dom.isComposedAncestor(accordionAncestor, node2)) {
+		if (!isComposedAncestor(accordionAncestor, node2)) {
 			return false;
 		}
 		return true;

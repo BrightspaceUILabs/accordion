@@ -33,8 +33,6 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@babel/polyfill": "^7",
-    "@polymer/iron-component-page": "^4",
-    "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
     "@webcomponents/webcomponentsjs": "^2",
     "babel-eslint": "^10",
     "eslint": "^6",
@@ -47,12 +45,10 @@
   },
   "version": "2.0.0",
   "dependencies": {
-    "d2l-colors": "BrightspaceUI/colors#semver:^4",
-    "d2l-icons": "BrightspaceUI/icons#semver:^6",
+    "@brightspace-ui/core": "^1.29.5",
     "@polymer/iron-collapse": "^3.0.0-pre.18",
     "@polymer/iron-flex-layout": "^3.0.0-pre.18",
     "@polymer/iron-selector": "^3.0.0-pre.18",
-    "@polymer/polymer": "^3",
-    "d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2"
+    "@polymer/polymer": "^3"
   }
 }
