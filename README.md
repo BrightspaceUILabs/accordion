@@ -1,5 +1,7 @@
 # d2l-accordion
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/BrightspaceUILabs/accordion.svg)](https://greenkeeper.io/)
+
 Polymer-based widget that displays a list of collapsible components. When collapsible component is clicked - it expands or collapses the associated content.
 
 ## Polymer components:
