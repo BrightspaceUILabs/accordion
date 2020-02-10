@@ -1,4 +1,5 @@
 {
+  "name": "@brightspace-ui-labs/accordion",
   "description": "Polymer-based accordion component",
   "keywords": [
     "web-components",
@@ -9,10 +10,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/BrightspaceUI/accordion"
+    "url": "https://github.com/BrightspaceUILabs/accordion"
   },
-  "homepage": "https://github.com/Brightspace/d2l-accordion",
-  "name": "d2l-accordion",
+  "homepage": "https://github.com/BrightspaceUILabs/accordion",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "accordion.js",
+    "accordion-collapse.js"
+  ],
   "scripts": {
     "start": "polymer serve",
     "test": "npm run test:lint && npm run test:polymer:local",
@@ -22,7 +29,7 @@
     "test:polymer:local": "polymer test --skip-plugin sauce",
     "test:polymer:sauce": "polymer test --skip-plugin local"
   },
-  "author": "D2L",
+  "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
     "@babel/polyfill": "^7.0.0",

@@ -4,40 +4,40 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-		<title>d2l-accordion test</title>
+		<title>d2l-labs-accordion test</title>
 
-		<script src="../../@babel/polyfill/browser.js"></script>
-		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script src="../../wct-browser-legacy/browser.js"></script>
+		<script src="/node_modules/@babel/polyfill/browser.js"></script>
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script src="/node_modules/wct-browser-legacy/browser.js"></script>
 
-		<script type="module" src="../d2l-accordion.js"></script>
+		<script type="module" src="../accordion.js"></script>
 	</head>
 	<body>
 		<test-fixture id="accordion-collapse-fixture">
 			<template>
-				<d2l-accordion>
-					<d2l-accordion-collapse title="Item 1">Test</d2l-accordion-collapse>
-					<d2l-accordion-collapse title="Item 2">Test</d2l-accordion-collapse>
-					<d2l-accordion-collapse title="Item 3">Test</d2l-accordion-collapse>
-				</d2l-accordion>
+				<d2l-labs-accordion>
+					<d2l-labs-accordion-collapse title="Item 1">Test</d2l-labs-accordion-collapse>
+					<d2l-labs-accordion-collapse title="Item 2">Test</d2l-labs-accordion-collapse>
+					<d2l-labs-accordion-collapse title="Item 3">Test</d2l-labs-accordion-collapse>
+				</d2l-labs-accordion>
 			</template>
 		</test-fixture>
 
 		<test-fixture id="accordion-collapse-fixture-label">
 			<template>
-				<d2l-accordion>
-					<d2l-accordion-collapse label="Item 1">Test</d2l-accordion-collapse>
-					<d2l-accordion-collapse label="Item 2">Test</d2l-accordion-collapse>
-					<d2l-accordion-collapse label="Item 3">Test</d2l-accordion-collapse>
-				</d2l-accordion>
+				<d2l-labs-accordion>
+					<d2l-labs-accordion-collapse label="Item 1">Test</d2l-labs-accordion-collapse>
+					<d2l-labs-accordion-collapse label="Item 2">Test</d2l-labs-accordion-collapse>
+					<d2l-labs-accordion-collapse label="Item 3">Test</d2l-labs-accordion-collapse>
+				</d2l-labs-accordion>
 			</template>
 		</test-fixture>
 
 		<script type="module">
-import '../d2l-accordion.js';
+import '../accordion.js';
 /* global assert */
-suite('Test <d2l-accordion>', function() {
-	test('<d2l-accordion> initial select state', function(done) {
+suite('Test <d2l-labs-accordion>', function() {
+	test('<d2l-labs-accordion> initial select state', function(done) {
 		var myEl = fixture('accordion-collapse-fixture');
 		flush(function() {
 			expect(myEl.selected).to.not.exist;
@@ -51,7 +51,7 @@ suite('Test <d2l-accordion>', function() {
 		});
 	});
 
-	test('<d2l-accordion> state change', function(done) {
+	test('<d2l-labs-accordion> state change', function(done) {
 		var myEl = fixture('accordion-collapse-fixture');
 		flush(function() {
 			expect(myEl.items[0].opened).to.be.false;
@@ -65,7 +65,7 @@ suite('Test <d2l-accordion>', function() {
 		});
 	});
 
-	test('<d2l-accordion> trigger test', function(done) {
+	test('<d2l-labs-accordion> trigger test', function(done) {
 		var myEl = fixture('accordion-collapse-fixture');
 		flush(function() {
 			expect(myEl.items[0].opened).to.be.false;
@@ -75,7 +75,7 @@ suite('Test <d2l-accordion>', function() {
 		});
 	});
 
-	test('<d2l-accordion> label instead of title', function(done) {
+	test('<d2l-labs-accordion> label instead of title', function(done) {
 		var myEl = fixture('accordion-collapse-fixture-label');
 		flush(function() {
 			expect(myEl.items[0].$$('.collapse-title').title).to.equal('Item 1');

@@ -8,7 +8,7 @@ import 'd2l-polymer-behaviors/d2l-dom.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
+$_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 	<template strip-whitespace="">
 		<style is="custom-style">
 			:host {
@@ -79,14 +79,14 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-accordion-collapse">
 
 document.head.appendChild($_documentContainer.content);
 /**
- * `d2l-accordion-collapse`
+ * `d2l-labs-accordion-collapse`
  * An iron-collapse with a trigger section and optional expand/collapse icons.
  * Originally taken from: https://www.webcomponents.org/element/jifalops/iron-collapse-button
  *
- * @demo demo/d2l-accordion-collapse.html
+ * @demo demo/accordion-collapse.html
  */
 Polymer({
-	is: 'd2l-accordion-collapse',
+	is: 'd2l-labs-accordion-collapse',
 	properties: {
 		/**
 		 * Label title
@@ -185,7 +185,7 @@ Polymer({
 		if (this.disabled) {
 			return;
 		}
-		window.addEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
+		window.addEventListener('d2l-labs-accordion-collapse-state-changed', this._boundListener);
 		this.$.detail.addEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 
@@ -193,7 +193,7 @@ Polymer({
 		if (this.disabled) {
 			return;
 		}
-		window.removeEventListener('d2l-accordion-collapse-state-changed', this._boundListener);
+		window.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._boundListener);
 		this.$.detail.removeEventListener('iron-resize', this._fireAccordionResizeEvent);
 	},
 	open: function() {
@@ -220,7 +220,7 @@ Polymer({
 		this._notifyStateChanged();
 	},
 	toggle: function() {
-		this.fire('d2l-accordion-collapse-clicked');
+		this.fire('d2l-labs-accordion-collapse-clicked');
 		if (this.disabled) {
 			return;
 		}
@@ -266,9 +266,9 @@ Polymer({
 	},
 	_notifyStateChanged: function() {
 		if (this.opened) {
-			this.fire('d2l-accordion-collapse-state-opened');
+			this.fire('d2l-labs-accordion-collapse-state-opened');
 		}
-		this.fire('d2l-accordion-collapse-state-changed', { opened: this.opened, el: this });
+		this.fire('d2l-labs-accordion-collapse-state-changed', { opened: this.opened, el: this });
 		this.$.trigger.setAttribute('aria-expanded', this.opened);
 	},
 	_haveSharedAutoCloseAccordionAncestor: function(node1, node2) {
@@ -286,7 +286,7 @@ Polymer({
 		return true;
 	},
 	_fireAccordionResizeEvent: function() {
-		var event = new CustomEvent('d2l-accordion-collapse-resize', {
+		var event = new CustomEvent('d2l-labs-accordion-collapse-resize', {
 			bubbles: true
 		});
 		window.dispatchEvent(event);

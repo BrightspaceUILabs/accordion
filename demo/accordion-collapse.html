@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
 	<head>
-		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-		<script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
-		<script type="module" src="../d2l-accordion-collapse.js"></script>
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script type="module" src="/node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+		<script type="module" src="/node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
+		<script type="module" src="../accordion-collapse.js"></script>
 		<!-- FIXME(polymer-modulizer):
 		These imperative modules that innerHTML your HTML are
 		a hacky way to be sure that any mixins in included style
@@ -30,9 +30,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 			<template>
-				<d2l-accordion-collapse title="Regular" opened="">
+				<d2l-labs-accordion-collapse title="Regular" opened="">
 					Demo
-				</d2l-accordion-collapse>
+				</d2l-labs-accordion-collapse>
 			</template>
 		</demo-snippet>`;
 
@@ -43,9 +43,9 @@ document.body.appendChild($_documentContainer.content);
 	
 	$_documentContainer.innerHTML = `<demo-snippet>
 				<template>
-					<d2l-accordion-collapse title="Regular with border" opened="" border>
+					<d2l-labs-accordion-collapse title="Regular with border" opened="" border>
 						Demo
-					</d2l-accordion-collapse>
+					</d2l-labs-accordion-collapse>
 				</template>
 			</demo-snippet>`;
 	
@@ -56,9 +56,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 			<template>
-				<d2l-accordion-collapse title="Flex" flex="">
+				<d2l-labs-accordion-collapse title="Flex" flex="">
 					Demo
-				</d2l-accordion-collapse>
+				</d2l-labs-accordion-collapse>
 			</template>
 		</demo-snippet>`;
 
@@ -69,9 +69,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 			<template>
-				<d2l-accordion-collapse title="NoIcons" no-icons="">
+				<d2l-labs-accordion-collapse title="NoIcons" no-icons="">
 					Demo
-				</d2l-accordion-collapse>
+				</d2l-labs-accordion-collapse>
 			</template>
 		</demo-snippet>`;
 
@@ -82,10 +82,10 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 			<template>
-				<d2l-accordion-collapse>
+				<d2l-labs-accordion-collapse>
 					<button slot="header">CustomHeader</button>
 					Demo
-				</d2l-accordion-collapse>
+				</d2l-labs-accordion-collapse>
 			</template>
 		</demo-snippet>`;
 
@@ -96,9 +96,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 			<template>
-				<d2l-accordion-collapse title="Disabled/Opened" disabled="" opened="">
+				<d2l-labs-accordion-collapse title="Disabled/Opened" disabled="" opened="">
 					Demo
-				</d2l-accordion-collapse>
+				</d2l-labs-accordion-collapse>
 			</template>
 		</demo-snippet>`;
 
@@ -109,9 +109,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 			<template>
-				<d2l-accordion-collapse title="Disabled/Closed" disabled="">
+				<d2l-labs-accordion-collapse title="Disabled/Closed" disabled="">
 					Demo
-				</d2l-accordion-collapse>
+				</d2l-labs-accordion-collapse>
 			</template>
 		</demo-snippet>`;
 
@@ -124,9 +124,9 @@ $_documentContainer.innerHTML = `
 <h2>Label attribute puts title attribute only on header</h2>
 <demo-snippet>
 	<template>
-		<d2l-accordion-collapse label="Regular" opened="">
+		<d2l-labs-accordion-collapse label="Regular" opened="">
 			Demo
-		</d2l-accordion-collapse>
+		</d2l-labs-accordion-collapse>
 	</template>
 </demo-snippet>`;
 
@@ -137,9 +137,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 	<template>
-		<d2l-accordion-collapse label="Flex" flex="">
+		<d2l-labs-accordion-collapse label="Flex" flex="">
 			Demo
-		</d2l-accordion-collapse>
+		</d2l-labs-accordion-collapse>
 	</template>
 </demo-snippet>`;
 
@@ -150,9 +150,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 	<template>
-		<d2l-accordion-collapse label="NoIcons" no-icons="">
+		<d2l-labs-accordion-collapse label="NoIcons" no-icons="">
 			Demo
-		</d2l-accordion-collapse>
+		</d2l-labs-accordion-collapse>
 	</template>
 </demo-snippet>`;
 
@@ -163,10 +163,10 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 	<template>
-		<d2l-accordion-collapse>
+		<d2l-labs-accordion-collapse>
 			<button slot="header">CustomHeader</button>
 			Demo
-		</d2l-accordion-collapse>
+		</d2l-labs-accordion-collapse>
 	</template>
 </demo-snippet>`;
 
@@ -177,9 +177,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 	<template>
-		<d2l-accordion-collapse label="Disabled/Opened" disabled="" opened="">
+		<d2l-labs-accordion-collapse label="Disabled/Opened" disabled="" opened="">
 			Demo
-		</d2l-accordion-collapse>
+		</d2l-labs-accordion-collapse>
 	</template>
 </demo-snippet>`;
 
@@ -190,9 +190,9 @@ const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<demo-snippet>
 	<template>
-		<d2l-accordion-collapse label="Disabled/Closed" disabled="">
+		<d2l-labs-accordion-collapse label="Disabled/Closed" disabled="">
 			Demo
-		</d2l-accordion-collapse>
+		</d2l-labs-accordion-collapse>
 	</template>
 </demo-snippet>`;
 
@@ -203,7 +203,7 @@ document.body.appendChild($_documentContainer.content);
 	
 	$_documentContainer.innerHTML = `<demo-snippet>
 		<template>
-			<d2l-accordion-collapse label="Summary and flex" flex>
+			<d2l-labs-accordion-collapse label="Summary and flex" flex>
 				<ul slot="summary">
 					<li>Availability starts 4/13/2020 and ends 4/23/2020</li>
 					<li>One release condition</li>
@@ -215,7 +215,7 @@ Proin eget accumsan neque. Vestibulum semper justo erat, vitae scelerisque neque
 
 Maecenas sed tortor ac risus consectetur viverra ac sit amet purus. In tempor scelerisque augue in pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nulla sapien, porttitor a blandit quis, convallis blandit justo. Sed luctus vitae nisl a consectetur. Proin interdum orci ex, non sodales diam faucibus in. Fusce et dolor ac ipsum vulputate pretium. Quisque nec vehicula quam.
 </p>
-			</d2l-accordion-collapse>
+			</d2l-labs-accordion-collapse>
 		</template>
 	</demo-snippet>`;
 	
@@ -226,7 +226,7 @@ Maecenas sed tortor ac risus consectetur viverra ac sit amet purus. In tempor sc
 	
 	$_documentContainer.innerHTML = `<demo-snippet>
 		<template>
-			<d2l-accordion-collapse flex header-border>
+			<d2l-labs-accordion-collapse flex header-border>
 				<h2 slot="header">Custom header, summary, border and flex 💪</h2>
 				<ul slot="summary" style="list-style-type: none; padding-left: 0px;">
 					<li>Availability starts 4/13/2020 and ends 4/23/2020</li>
@@ -239,7 +239,7 @@ Proin eget accumsan neque. Vestibulum semper justo erat, vitae scelerisque neque
 
 Maecenas sed tortor ac risus consectetur viverra ac sit amet purus. In tempor scelerisque augue in pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nulla sapien, porttitor a blandit quis, convallis blandit justo. Sed luctus vitae nisl a consectetur. Proin interdum orci ex, non sodales diam faucibus in. Fusce et dolor ac ipsum vulputate pretium. Quisque nec vehicula quam.
 </p>
-			</d2l-accordion-collapse>
+			</d2l-labs-accordion-collapse>
 		</template>
 	</demo-snippet>`;
 	
