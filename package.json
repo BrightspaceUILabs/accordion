@@ -45,7 +45,7 @@
     "polymer-cli": "^1",
     "wct-browser-legacy": "^1"
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "dependencies": {
     "d2l-colors": "BrightspaceUI/colors#semver:^4",
     "d2l-icons": "BrightspaceUI/icons#semver:^6",
