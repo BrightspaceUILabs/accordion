@@ -45,7 +45,7 @@
   },
   "version": "2.0.2",
   "dependencies": {
-    "@brightspace-ui/core": "^1.29.5",
+    "@brightspace-ui/core": "^1.31.0",
     "@polymer/iron-collapse": "^3.0.0-pre.18",
     "@polymer/iron-flex-layout": "^3.0.0-pre.18",
     "@polymer/iron-selector": "^3.0.0-pre.18",
