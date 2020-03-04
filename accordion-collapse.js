@@ -46,13 +46,13 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			iron-collapse {
 				--iron-collapse-transition-duration: 700ms;
 			}
-			:host([_state="closed"]) .content { 
+			:host([_state="closed"]) .content {
 				min-height: 0;
 			}
-			:host([_state="closed"]) .summary { 
+			:host([_state="closed"]) .summary {
 				position: static;
 			}
-			:host([_state="opened"]) .summary { 
+			:host([_state="opened"]) .summary {
 				position: absolute;
 				transition-delay: 500ms;
 			}
