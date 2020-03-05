@@ -34,27 +34,30 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				padding: 1px;
 				margin: -1px;
 				position: relative;
-				overflow: hidden;
-			}
-			.content[data-opened] .summary {
-				opacity: 0;
 			}
 			.summary {
-				opacity: 1;
 				transition: opacity 500ms ease;
 			}
 			iron-collapse {
 				--iron-collapse-transition-duration: 700ms;
 			}
-			:host([_state="closed"]) .content { 
-				min-height: 0;
+			:host([_state="closing"]) .content,
+			:host([_state="opening"]) .content {
+				overflow: hidden;
 			}
-			:host([_state="closed"]) .summary { 
-				position: static;
-			}
-			:host([_state="opened"]) .summary { 
-				position: absolute;
+			:host([_state="closed"]) .summary,
+			:host([_state="closing"]) .summary {
 				transition-delay: 500ms;
+			}
+			:host([_state="opening"]) .summary,
+			:host([_state="opened"]) .summary {
+				opacity: 0;
+			}
+			:host([_state="closing"]) .summary,
+			:host([_state="opening"]) .summary,
+			:host([_state="opened"]) .summary {
+				position: absolute;
+				pointer-events: none;
 			}
 		</style>
 
@@ -65,7 +68,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 			</template>
 		</a>
-		<div class="content" data-opened$="[[opened]]">
+		<div class="content">
 			<iron-collapse id="detail" class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
 				<slot></slot>
 			</iron-collapse>
@@ -206,7 +209,6 @@ Polymer({
 		if (!inTransition) {
 			const content = this.shadowRoot.querySelector('.content');
 			content.style.minHeight = (content.offsetHeight - 2) + 'px';
-			this._state = 'opened';
 		}
 		this.opened = true;
 		this._notifyStateChanged();
@@ -230,16 +232,34 @@ Polymer({
 		}
 	},
 	_handleTransitionChanged(event) {
-		const isClosed =
-			event.target.opened === false && event.target.transitioning === false;
-		const isOpened =
-			event.target.opened === true && event.target.transitioning === false;
+
+		const opened = event.target.opened === true;
+		const transitioning = event.target.transitioning === true;
+
+		const isClosing = !opened && transitioning;
+		if (isClosing) {
+			this._state = 'closing';
+			return;
+		}
+
+		const isClosed = !opened && !transitioning;
 		if (isClosed) {
 			this._state = 'closed';
 			const content = this.shadowRoot.querySelector('.content');
-			content.style.minHeight = 0;
-		} else if (isOpened) {
+			content.style.removeProperty('minHeight');
+			return;
+		}
+
+		const isOpening = opened && transitioning;
+		if (isOpening) {
+			this._state = 'opening';
+			return;
+		}
+
+		const isOpened = opened && !transitioning;
+		if (isOpened) {
 			this._state = 'opened';
+			return;
 		}
 	},
 	_toggle: function(cond, t, f) { return cond ? t : f; },
