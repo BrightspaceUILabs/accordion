@@ -103,7 +103,10 @@ Example 5:
 ```
 ## Developing, Testing and Contributing
 
-After cloning the repo, run `npm install` to install dependencies.
+After cloning the repo, you need to install dependencies.
+```shell
+npm install
+```
 
 If you don't have it already, install the [Polymer CLI](https://www.polymer-project.org/2.0/docs/tools/polymer-cli) globally:
 
