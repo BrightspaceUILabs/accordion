@@ -20,8 +20,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			}
 			#trigger[data-border] {
 				border-bottom: solid 1px var(--d2l-color-corundum);
-				padding-bottom: 0.4rem;
 				margin-bottom: 0.4rem;
+				padding-bottom: 0.4rem;
 			}
 			#trigger, #trigger:visited, #trigger:hover, #trigger:active {
 				color: inherit;
@@ -29,10 +29,24 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			:host([flex]) .collapse-title {
 				@apply --layout-flex;
 			}
+			:host([icon-has-padding]) d2l-icon {
+				padding-left: 1.25rem;
+			}
+			:host([icon-has-padding][dir="rtl"]) d2l-icon {
+				padding-left: 0;
+				padding-right: 1.25rem;
+			}
+			:host([flex][icon-has-padding]) d2l-icon {
+				padding-right: 1.25rem;
+			}
+			:host([flex][icon-has-padding][dir="rtl"]) d2l-icon {
+				padding-left: 1.25rem;
+				padding-right: 0;
+			}
 			.content {
 				height: auto;
-				padding: 1px;
 				margin: -1px;
+				padding: 1px;
 				position: relative;
 			}
 			.summary {
@@ -56,8 +70,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			:host([_state="closing"]) .summary,
 			:host([_state="opening"]) .summary,
 			:host([_state="opened"]) .summary {
-				position: absolute;
 				pointer-events: none;
+				position: absolute;
 			}
 		</style>
 
@@ -147,6 +161,14 @@ Polymer({
 		 */
 		flex: {
 			type: Boolean,
+			value: false
+		},
+		/**
+		 * Whether or not to add extra padding for icon.
+		 */
+		iconHasPadding: {
+			type: Boolean,
+			reflectToAttribute: true,
 			value: false
 		},
 		/**
