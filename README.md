@@ -40,7 +40,7 @@ npm install @brightspace-ui-labs/accordion
 * opened - container is opened by default. Do not use this attribute when inside the **d2l-labs-accordion** as the **d2l-labs-accordion** does not monitor opened state of the items at the start. In this case, use `selected` or `selectedValue` **d2l-labs-accordion** attributes instead.
 * disabled - container cannot be expanded or collapsed
 * headerBorder - show a border between the header and the summary/content
-* iconHasPadding - adds padding on one side of the icon. 
+* icon-has-padding - adds padding on one side of the icon. 
  * When used with 'flex' attribute, the padding will be to the right. (Opposite for RTL)
  * Without 'flex' attribute, the padding will be on the left. (Opposite for RTL)
 
