@@ -30,17 +30,17 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				@apply --layout-flex;
 			}
 			:host([icon-has-padding]) d2l-icon {
-				padding-left: 25px;
+				padding-left: 1.25rem;
 			}
 			:host([icon-has-padding][dir="rtl"]) d2l-icon {
 				padding-left: 0;
-				padding-right: 25px;
+				padding-right: 1.25rem;
 			}
 			:host([flex][icon-has-padding]) d2l-icon {
-				padding-right: 25px;
+				padding-right: 1.25rem;
 			}
 			:host([flex][icon-has-padding][dir="rtl"]) d2l-icon {
-				padding-left: 25px;
+				padding-left: 1.25rem;
 				padding-right: 0;
 			}
 			.content {
