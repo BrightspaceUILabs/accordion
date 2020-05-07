@@ -40,6 +40,7 @@ npm install @brightspace-ui-labs/accordion
 * opened - container is opened by default. Do not use this attribute when inside the **d2l-labs-accordion** as the **d2l-labs-accordion** does not monitor opened state of the items at the start. In this case, use `selected` or `selectedValue` **d2l-labs-accordion** attributes instead.
 * disabled - container cannot be expanded or collapsed
 * headerBorder - show a border between the header and the summary/content
+* iconHasPadding - adds padding around the icon. When used with 'flex', the padding will be to the right. Without 'flex', the padding will be on the left. Opposite for RTL.
 
 #### Slots:
 * header - content to display under the title
@@ -103,7 +104,7 @@ Example 5:
 ```
 ## Developing, Testing and Contributing
 
-After cloning the repo, you need to install dependencies.
+After cloning the repo, install dependencies:
 ```shell
 npm install
 ```

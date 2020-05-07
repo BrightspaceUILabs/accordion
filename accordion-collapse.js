@@ -29,19 +29,19 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			:host([flex]) .collapse-title {
 				@apply --layout-flex;
 			}
-			:host([paddingIcon]) d2l-icon {
+			:host([icon-has-padding]) d2l-icon {
 				padding-left: 25px;
 			}
-			:host([paddingIcon][dir="rtl"]) d2l-icon {
+			:host([icon-has-padding][dir="rtl"]) d2l-icon {
 				padding-right: 25px;
-				padding-left: 0px;
+				padding-left: 0;
 			}
-			:host([flex][paddingIcon]) d2l-icon {
+			:host([flex][icon-has-padding]) d2l-icon {
 				padding-right: 25px;
 			}
-			:host([flex][paddingIcon][dir="rtl"]) d2l-icon {
+			:host([flex][icon-has-padding][dir="rtl"]) d2l-icon {
 				padding-left: 25px;
-				padding-right: 0px;
+				padding-right: 0;
 			}
 			.content {
 				height: auto;
@@ -166,8 +166,9 @@ Polymer({
 		/**
 		 * Whether or not to add extra padding for icon.
 		 */
-		paddingIcon: {
+		iconHasPadding: {
 			type: Boolean,
+			reflectToAttribute: true,
 			value: false
 		},
 		/**
