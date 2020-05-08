@@ -41,8 +41,8 @@ npm install @brightspace-ui-labs/accordion
 * disabled - container cannot be expanded or collapsed
 * headerBorder - show a border between the header and the summary/content
 * icon-has-padding - adds padding on one side of the icon. 
- * When used with 'flex' attribute, the padding will be to the right. (Opposite for RTL)
- * Without 'flex' attribute, the padding will be on the left. (Opposite for RTL)
+  * When used with 'flex' attribute, the padding will be to the right. (Opposite for RTL)
+  * Without 'flex' attribute, the padding will be on the left. (Opposite for RTL)
 
 #### Slots:
 * header - content to display under the title
