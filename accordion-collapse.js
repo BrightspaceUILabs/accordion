@@ -73,6 +73,12 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				pointer-events: none;
 				position: absolute;
 			}
+			:host([disabled]) a{
+				cursor: default;
+			}
+			:host([disabled]) d2l-icon{
+				color: var(--d2l-color-chromite);
+			}
 		</style>
 
 		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" data-border$="[[headerBorder]]">
