@@ -73,10 +73,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				pointer-events: none;
 				position: absolute;
 			}
-			:host([disabled]) a{
+			:host([disabled]) a {
 				cursor: default;
 			}
-			:host([disabled]) d2l-icon{
+			:host([disabled]) d2l-icon {
 				color: var(--d2l-color-chromite);
 			}
 		</style>
@@ -188,6 +188,7 @@ Polymer({
 		 * Whether the accordion's expand/collapse function is disabled.
 		 */
 		disabled: {
+			reflected: true,
 			type: Boolean,
 			value: false
 		},
