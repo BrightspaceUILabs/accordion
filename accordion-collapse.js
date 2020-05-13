@@ -188,7 +188,7 @@ Polymer({
 		 * Whether the accordion's expand/collapse function is disabled.
 		 */
 		disabled: {
-			reflected: true,
+			reflectToAttribute: true,
 			type: Boolean,
 			value: false
 		},
