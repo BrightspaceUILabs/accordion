@@ -31,12 +31,14 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			}
 			:host([icon-has-padding]) d2l-icon {
 				padding-left: 1.25rem;
+				padding-right: 0;
 			}
 			:host([icon-has-padding][dir="rtl"]) d2l-icon {
 				padding-left: 0;
 				padding-right: 1.25rem;
 			}
 			:host([flex][icon-has-padding]) d2l-icon {
+				padding-left: 0;
 				padding-right: 1.25rem;
 			}
 			:host([flex][icon-has-padding][dir="rtl"]) d2l-icon {
