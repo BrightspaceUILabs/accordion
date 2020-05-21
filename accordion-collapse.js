@@ -75,6 +75,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				pointer-events: none;
 				position: absolute;
 			}
+			:host([_state="closing"]) .summary,
+			:host([_state="opened"]) .summary {
+				transition-property: none;
+			}
 			:host([disabled]) a {
 				cursor: default;
 			}
