@@ -85,9 +85,12 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			:host([disabled]) d2l-icon {
 				color: var(--d2l-color-chromite);
 			}
+			:host([disable-default-trigger-focus]) #trigger:focus {
+				outline: none;
+			}
 		</style>
 
-		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" data-border$="[[headerBorder]]">
+		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-focus="_triggerFocus" on-blur="_triggerBlur">
 			<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
@@ -211,7 +214,15 @@ Polymer({
 			type: String,
 			reflectToAttribute: true,
 			value: 'closed'
-		}
+		},
+		/**
+		 * Whether or not to disable default focus styles
+		 */
+		disableDefaultTriggerFocus: {
+			type: Boolean,
+			reflectToAttribute: true,
+			value: false
+		},
 	},
 	ready: function() {
 		this._boundListener = this._onStateChanged.bind(this);
@@ -265,6 +276,12 @@ Polymer({
 		} else {
 			this.open();
 		}
+	},
+	_triggerFocus: function() {
+		this.fire('d2l-labs-accordion-toggle-focus');
+	},
+	_triggerBlur: function() {
+		this.fire('d2l-labs-accordion-toggle-blur');
 	},
 	_handleTransitionChanged(event) {
 
