@@ -90,7 +90,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			}
 		</style>
 
-		<a href="javascript:void(0)" id="trigger" on-click="toggle" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-focus="_triggerFocus" on-blur="_triggerBlur">
+		<a href="javascript:void(0)" id="trigger" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-blur="_triggerBlur" on-click="toggle" on-focus="_triggerFocus">
 			<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 			</div>
 			<template is="dom-if" if="[[!noIcons]]">
@@ -202,6 +202,14 @@ Polymer({
 			value: false
 		},
 		/**
+		 * Whether or not to disable default focus styles
+		 */
+		disableDefaultTriggerFocus: {
+			type: Boolean,
+			reflectToAttribute: true,
+			value: false
+		},
+		/**
 		 * Listener for state changes.
 		 */
 		_boundListener: {
@@ -214,15 +222,7 @@ Polymer({
 			type: String,
 			reflectToAttribute: true,
 			value: 'closed'
-		},
-		/**
-		 * Whether or not to disable default focus styles
-		 */
-		disableDefaultTriggerFocus: {
-			type: Boolean,
-			reflectToAttribute: true,
-			value: false
-		},
+		}
 	},
 	ready: function() {
 		this._boundListener = this._onStateChanged.bind(this);
@@ -278,10 +278,10 @@ Polymer({
 		}
 	},
 	_triggerFocus: function() {
-		this.fire('d2l-labs-accordion-toggle-focus');
+		this.fire('d2l-labs-accordion-collapse-toggle-focus');
 	},
 	_triggerBlur: function() {
-		this.fire('d2l-labs-accordion-toggle-blur');
+		this.fire('d2l-labs-accordion-collapse-toggle-blur');
 	},
 	_handleTransitionChanged(event) {
 
