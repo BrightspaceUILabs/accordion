@@ -43,7 +43,7 @@
     "polymer-cli": "^1",
     "wct-browser-legacy": "^1"
   },
-  "version": "2.3.0",
+  "version": "2.4.0",
   "dependencies": {
     "@brightspace-ui/core": "^1.29.5",
     "@polymer/iron-collapse": "^3.0.0-pre.18",
