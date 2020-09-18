@@ -28,6 +28,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			}
 			:host([flex]) .collapse-title {
 				@apply --layout-flex;
+				overflow: hidden;
 			}
 			:host([icon-has-padding]) d2l-icon {
 				padding-left: 1.25rem;
