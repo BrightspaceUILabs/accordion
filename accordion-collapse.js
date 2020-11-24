@@ -299,7 +299,7 @@ Polymer({
 		if (isClosed) {
 			this._state = 'closed';
 			const content = this.shadowRoot.querySelector('.content');
-			content.style.removeProperty('minHeight');
+			content.style.removeProperty('min-height');
 			return;
 		}
 
