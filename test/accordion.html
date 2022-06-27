@@ -36,10 +36,10 @@
 		<script type="module">
 import '../accordion.js';
 
-suite('Test <d2l-labs-accordion>', function() {
-	test('<d2l-labs-accordion> initial select state', function(done) {
-		var myEl = fixture('accordion-collapse-fixture');
-		flush(function() {
+suite('Test <d2l-labs-accordion>', () => {
+	test('<d2l-labs-accordion> initial select state', (done) => {
+		const myEl = fixture('accordion-collapse-fixture');
+		flush(() => {
 			expect(myEl.selected).to.not.exist;
 			expect(myEl.items[0].opened).to.be.false;
 			expect(myEl.items[1].opened).to.be.false;
@@ -51,9 +51,9 @@ suite('Test <d2l-labs-accordion>', function() {
 		});
 	});
 
-	test('<d2l-labs-accordion> state change', function(done) {
-		var myEl = fixture('accordion-collapse-fixture');
-		flush(function() {
+	test('<d2l-labs-accordion> state change', (done) => {
+		const myEl = fixture('accordion-collapse-fixture');
+		flush(() => {
 			expect(myEl.items[0].opened).to.be.false;
 			expect(myEl.items[1].opened).to.be.false;
 			expect(myEl.items[2].opened).to.be.false;
@@ -65,9 +65,9 @@ suite('Test <d2l-labs-accordion>', function() {
 		});
 	});
 
-	test('<d2l-labs-accordion> trigger test', function(done) {
-		var myEl = fixture('accordion-collapse-fixture');
-		flush(function() {
+	test('<d2l-labs-accordion> trigger test', (done) => {
+		const myEl = fixture('accordion-collapse-fixture');
+		flush(() => {
 			expect(myEl.items[0].opened).to.be.false;
 			myEl.items[0].$.trigger.click();
 			expect(myEl.items[0].opened).to.be.true;
@@ -75,9 +75,9 @@ suite('Test <d2l-labs-accordion>', function() {
 		});
 	});
 
-	test('<d2l-labs-accordion> label instead of title', function(done) {
-		var myEl = fixture('accordion-collapse-fixture-label');
-		flush(function() {
+	test('<d2l-labs-accordion> label instead of title', (done) => {
+		const myEl = fixture('accordion-collapse-fixture-label');
+		flush(() => {
 			expect(myEl.items[0].$$('.collapse-title').title).to.equal('Item 1');
 			expect(myEl.items[1].$$('.collapse-title').title).to.equal('Item 2');
 			expect(myEl.items[2].$$('.collapse-title').title).to.equal('Item 3');

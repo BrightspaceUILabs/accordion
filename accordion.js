@@ -1,6 +1,6 @@
 import '@polymer/polymer/polymer-legacy.js';
-import { IronMultiSelectableBehavior } from '@polymer/iron-selector/iron-multi-selectable.js';
 import './accordion-collapse.js';
+import { IronMultiSelectableBehavior } from '@polymer/iron-selector/iron-multi-selectable.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 const $_documentContainer = document.createElement('template');
 
