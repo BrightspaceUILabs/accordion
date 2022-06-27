@@ -255,7 +255,7 @@ Polymer({
 
 		if (!inTransition) {
 			const content = this.shadowRoot.querySelector('.content');
-			content.style.minHeight = (content.offsetHeight - 2) + 'px';
+			content.style.minHeight = `${content.offsetHeight - 2}px`;
 		}
 		this.opened = true;
 		this._notifyStateChanged();
@@ -344,7 +344,7 @@ Polymer({
 		this.$.trigger.setAttribute('aria-expanded', this.opened);
 	},
 	_haveSharedAutoCloseAccordionAncestor: function(node1, node2) {
-		var accordionAncestor = findComposedAncestor(node1, function(elem) {
+		const accordionAncestor = findComposedAncestor(node1, (elem) => {
 			if (elem.isAccordion && elem.autoClose) {
 				return true;
 			}
@@ -358,7 +358,7 @@ Polymer({
 		return true;
 	},
 	_fireAccordionResizeEvent: function() {
-		var event = new CustomEvent('d2l-labs-accordion-collapse-resize', {
+		const event = new CustomEvent('d2l-labs-accordion-collapse-resize', {
 			bubbles: true
 		});
 		window.dispatchEvent(event);
