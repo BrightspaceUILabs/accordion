@@ -105,48 +105,44 @@ Example 5:
 ```
 ## Developing, Testing and Contributing
 
-After cloning the repo, install dependencies:
-```shell
-npm install
-```
+After cloning the repo, run `npm install` to install dependencies.
 
-If you don't have it already, install the [Polymer CLI](https://www.polymer-project.org/2.0/docs/tools/polymer-cli) globally:
+### Linting
 
 ```shell
-npm install -g polymer-cli
+# eslint
+npm run lint
+
+# eslint only
+npm run lint:eslint
 ```
 
-To start a [local web server](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#serve) that hosts the demo page and tests:
+### Testing
+
+```shell
+# lint & run headless unit tests
+npm test
+
+# unit tests only
+npm run test:headless
+
+# debug or run a subset of local unit tests
+npm run test:headless:watch
+```
+
+### Running the demos
+
+To start a [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) that hosts the demo page and tests:
 
 ```shell
 npm start
 ```
 
-To access the demo page visit [http://127.0.0.1:8081/components/d2l-labs-accordion/demo/](http://127.0.0.1:8081/components/d2l-labs-accordion/demo/)
-
-To lint ([eslint](http://eslint.org/) and [Polymer lint](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#lint)):
-
-```shell
-npm run lint
-```
-
-To run unit tests locally using [Polymer test](https://www.polymer-project.org/2.0/docs/tools/polymer-cli-commands#tests):
-
-```shell
-npm run test:polymer:local
-```
-
-To lint AND run local unit tests:
-
-```shell
-npm test
-```
-
 ## Versioning & Releasing
 
-> TL;DR: Commits prefixed with `fix:` and `feat:` will trigger patch and minor releases when merged to `master`. Read on for more details...
+> TL;DR: Commits prefixed with `fix:` and `feat:` will trigger patch and minor releases when merged to `main`. Read on for more details...
 
-The [sematic-release GitHub Action](https://github.com/BrightspaceUI/actions/tree/master/semantic-release) is called from the `release.yml` GitHub Action workflow to handle version changes and releasing.
+The [semantic-release GitHub Action](https://github.com/BrightspaceUI/actions/tree/main/semantic-release) is called from the `release.yml` GitHub Action workflow to handle version changes and releasing.
 
 ### Version Changes
 
