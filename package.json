@@ -36,7 +36,7 @@
     "@web/dev-server": "^0.3",
     "@web/test-runner": "^0.17",
     "eslint": "^8",
-    "eslint-config-brightspace": "^0.24"
+    "eslint-config-brightspace": "^0.25"
   },
   "version": "3.1.0",
   "dependencies": {
