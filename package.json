@@ -32,7 +32,7 @@
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@open-wc/testing": "^3",
+    "@open-wc/testing": "^4",
     "@web/dev-server": "^0.3",
     "@web/test-runner": "^0.18",
     "eslint": "^8",
