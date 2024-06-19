@@ -18,6 +18,9 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				@apply --layout-center;
 				text-decoration: none;
 			}
+			#trigger:focus-visible {
+				outline-offset: 3px;
+			}
 			#trigger[data-border] {
 				border-bottom: solid 1px var(--d2l-color-corundum);
 				margin-bottom: 0.4rem;
