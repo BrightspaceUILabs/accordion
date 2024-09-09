@@ -103,36 +103,31 @@ Example 5:
 	<p>Stuff inside of the accordion goes here</p>
 </d2l-labs-accordion-collapse>
 ```
-## Developing, Testing and Contributing
+## Developing and Contributing
 
 After cloning the repo, run `npm install` to install dependencies.
 
-### Linting
+### Testing
+
+To run the full suite of tests:
+
+```shell
+npm test
+```
+
+Alternatively, tests can be selectively run:
 
 ```shell
 # eslint
-npm run lint
-
-# eslint only
 npm run lint:eslint
-```
 
-### Testing
-
-```shell
-# lint & run headless unit tests
-npm test
-
-# unit tests only
-npm run test:headless
-
-# debug or run a subset of local unit tests
-npm run test:headless:watch
+# unit tests
+npm run test:unit
 ```
 
 ### Running the demos
 
-To start a [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) that hosts the demo page and tests:
+To start a [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) that hosts the demo pages and tests:
 
 ```shell
 npm start
