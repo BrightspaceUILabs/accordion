@@ -34,7 +34,7 @@
     "@brightspace-ui/testing": "^1",
     "@web/dev-server": "^0.4",
     "eslint": "^8",
-    "eslint-config-brightspace": "^0.25"
+    "eslint-config-brightspace": "^2.0"
   },
   "version": "4.0.1",
   "dependencies": {
