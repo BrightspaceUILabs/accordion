@@ -42,6 +42,10 @@ npm install @brightspace-ui-labs/accordion
 * icon-has-padding - adds padding on one side of the icon.
   * When used with 'flex' attribute, the padding will be to the right. (Opposite for RTL)
   * Without 'flex' attribute, the padding will be on the left. (Opposite for RTL)
+* header-has-clickable - adjusts the html to allow clickable elements in the header to function properly
+(especially with screen readers)
+* screen-reader-header-text - text that is visually hidden and only used for a screen reader to read text
+from the header
 
 #### Slots:
 * header - content to display under the title
@@ -137,4 +141,4 @@ npm start
 
 This repo is configured to use `semantic-release`. Commits prefixed with `fix:` and `feat:` will trigger patch and minor releases when merged to `main`.
 
-To learn how to create major releases and release from maintenance branches, refer to the [semantic-release GitHub Action](https://github.com/BrightspaceUI/actions/tree/main/semantic-release) documentation. 
+To learn how to create major releases and release from maintenance branches, refer to the [semantic-release GitHub Action](https://github.com/BrightspaceUI/actions/tree/main/semantic-release) documentation.
