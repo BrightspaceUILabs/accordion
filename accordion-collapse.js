@@ -14,7 +14,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			:host {
 				display: block;
 			}
-			#div-trigger{
+			#clickable-header-content{
 				@apply --layout-horizontal;
 				@apply --layout-center;
 			}
@@ -103,11 +103,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				#header-container{
 					position: relative;
 				}
-				#div-trigger{
-					position: relative;
-					z-index: 2;
-					cursor: pointer;
-				}
 				#trigger {
 					position: absolute;
 					width: 100%;
@@ -131,7 +126,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				</template>
 			</a>
 			<template is="dom-if" if="[[headerHasClickable]]">
-				<div id="div-trigger" on-click="toggle">
+				<div id="clickable-header-content">
 					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 					</div>
 					<template is="dom-if" if="[[!noIcons]]">
