@@ -4,6 +4,7 @@ import '@brightspace-ui/core/components/icons/icon.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import { findComposedAncestor, isComposedAncestor } from '@brightspace-ui/core/helpers/dom.js';
+import { offscreenStyles } from '@brightspace-ui/core/components/offscreen/offscreen.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 const $_documentContainer = document.createElement('template');
 
@@ -12,6 +13,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 		<style is="custom-style">
 			:host {
 				display: block;
+			}
+			#div-trigger{
+				@apply --layout-horizontal;
+				@apply --layout-center;
 			}
 			#trigger {
 				@apply --layout-horizontal;
@@ -93,14 +98,49 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				outline: none;
 			}
 		</style>
+		<template is="dom-if" if="[[headerHasClickable]]">
+			<style>
+				#header-container{
+					position: relative;
+				}
+				#div-trigger{
+					position: relative;
+					z-index: 2;
+					cursor: pointer;
+				}
+				#trigger {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					z-index: 1;
+				}
+			</style>
+		</template>
 
-		<a href="javascript:void(0)" id="trigger" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-blur="_triggerBlur" on-click="toggle" on-focus="_triggerFocus">
-			<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
-			</div>
-			<template is="dom-if" if="[[!noIcons]]">
-				<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
+		<div id="header-container">
+			<a href="javascript:void(0)" id="trigger" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-blur="_triggerBlur" on-click="toggle" on-focus="_triggerFocus">
+				<template is="dom-if" if="[[!headerHasClickable]]">
+					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
+					</div>
+					<template is="dom-if" if="[[!noIcons]]">
+						<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
+					</template>
+				</template>
+				<template is="dom-if" if="[[headerHasClickable]]">
+					<span class="d2l-offscreen">[[screenReaderHeaderText]]</span>
+				</template>
+			</a>
+			<template is="dom-if" if="[[headerHasClickable]]">
+				<div id="div-trigger" on-click="toggle">
+					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
+					</div>
+					<template is="dom-if" if="[[!noIcons]]">
+						<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
+					</template>
+				</div>
 			</template>
-		</a>
+		</div>
+
 		<div class="content">
 			<iron-collapse id="detail" class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
 				<slot></slot>
@@ -134,6 +174,13 @@ Polymer({
 		 * Label. Does not apply title to entire accordion
 		 */
 		label: {
+			type: String,
+			value: ''
+		},
+		/**
+		 * Header text hidden on the screen, but to be read by a screen reader
+		 */
+		screenReaderHeaderText: {
 			type: String,
 			value: ''
 		},
@@ -214,6 +261,13 @@ Polymer({
 			value: false
 		},
 		/**
+		 * Whether or not the header contains a clickable element inside it
+		 */
+		headerHasClickable: {
+			type: Boolean,
+			value: false
+		},
+		/**
 		 * Listener for state changes.
 		 */
 		_boundListener: {
@@ -231,6 +285,10 @@ Polymer({
 	ready: function() {
 		this._boundListener = this._onStateChanged.bind(this);
 		this.$.trigger.setAttribute('aria-expanded', this.opened);
+
+		const styleElement = document.createElement('style');
+		styleElement.textContent = offscreenStyles.cssText;
+		this.shadowRoot.appendChild(styleElement);
 	},
 
 	attached: function() {
