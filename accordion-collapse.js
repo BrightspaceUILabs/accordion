@@ -14,7 +14,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			:host {
 				display: block;
 			}
-			#clickable-header-content{
+			#interactive-header-content{
 				@apply --layout-horizontal;
 				@apply --layout-center;
 			}
@@ -98,7 +98,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				outline: none;
 			}
 		</style>
-		<template is="dom-if" if="[[headerHasClickable]]">
+		<template is="dom-if" if="[[headerHasInteractiveContent]]">
 			<style>
 				#header-container{
 					position: relative;
@@ -114,19 +114,19 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 
 		<div id="header-container">
 			<a href="javascript:void(0)" id="trigger" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-blur="_triggerBlur" on-click="toggle" on-focus="_triggerFocus">
-				<template is="dom-if" if="[[!headerHasClickable]]">
+				<template is="dom-if" if="[[!headerHasInteractiveContent]]">
 					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 					</div>
 					<template is="dom-if" if="[[!noIcons]]">
 						<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
 					</template>
 				</template>
-				<template is="dom-if" if="[[headerHasClickable]]">
+				<template is="dom-if" if="[[headerHasInteractiveContent]]">
 					<span class="d2l-offscreen">[[screenReaderHeaderText]]</span>
 				</template>
 			</a>
-			<template is="dom-if" if="[[headerHasClickable]]">
-				<div id="clickable-header-content">
+			<template is="dom-if" if="[[headerHasInteractiveContent]]">
+				<div id="interactive-header-content">
 					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 					</div>
 					<template is="dom-if" if="[[!noIcons]]">
@@ -256,9 +256,9 @@ Polymer({
 			value: false
 		},
 		/**
-		 * Whether or not the header contains a clickable element inside it
+		 * Whether or not the header contains an interactive element inside it (e.g. clickable)
 		 */
-		headerHasClickable: {
+		headerHasInteractiveContent: {
 			type: Boolean,
 			value: false
 		},
