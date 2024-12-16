@@ -44,8 +44,6 @@ npm install @brightspace-ui-labs/accordion
   * Without 'flex' attribute, the padding will be on the left. (Opposite for RTL)
 * header-has-interactive-content - adjusts the html to allow interactive (e.g. clickable) elements in the header to function properly
 (especially with screen readers)
-  * If this is true, any interactive elements being slotted through the `header` must have a `z-index` of at
-	least 1 in order to be interactable (see Example 6)
 * screen-reader-header-text - text that is visually hidden and only used for a screen reader to read text
 from the header
 
@@ -115,7 +113,7 @@ Example 6:
 <d2l-labs-accordion-collapse header-has-interactive-content screen-reader-header-text="Go to D2L">
 	<span slot="header">
 		Go to
-		<a href="https://www.d2l.com/" style="position: relative; z-index: 1;">D2L</a>
+		<a href="https://www.d2l.com/">D2L</a>
 	</span>
 </d2l-labs-accordion-collapse>
 ```

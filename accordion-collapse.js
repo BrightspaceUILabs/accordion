@@ -100,20 +100,23 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 		</style>
 		<template is="dom-if" if="[[headerHasInteractiveContent]]">
 			<style>
-				#header-container{
-					position: relative;
+				#header-container {
+					display: grid;
+					grid-template-columns: auto;
+					grid-template-rows: auto;
 				}
-				#trigger {
-					position: absolute;
-					width: 100%;
-					height: 100%;
-					z-index: 1;
+				.header-grid-item {
+					grid-column: 1;
+					grid-row: 1;
+				}
+				#interactive-header-content {
+					cursor: pointer;
 				}
 			</style>
 		</template>
 
 		<div id="header-container">
-			<a href="javascript:void(0)" id="trigger" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-blur="_triggerBlur" on-click="toggle" on-focus="_triggerFocus">
+			<a href="javascript:void(0)" id="trigger" class="header-grid-item" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-blur="_triggerBlur" on-click="toggle" on-focus="_triggerFocus">
 				<template is="dom-if" if="[[!headerHasInteractiveContent]]">
 					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 					</div>
@@ -126,7 +129,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				</template>
 			</a>
 			<template is="dom-if" if="[[headerHasInteractiveContent]]">
-				<div id="interactive-header-content">
+				<div id="interactive-header-content" class="header-grid-item" on-click="toggle">
 					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
 					</div>
 					<template is="dom-if" if="[[!noIcons]]">
