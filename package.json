@@ -36,7 +36,7 @@
     "eslint": "^8",
     "eslint-config-brightspace": "^0.25"
   },
-  "version": "4.0.1",
+  "version": "4.1.0",
   "dependencies": {
     "@brightspace-ui/core": "^3",
     "@polymer/iron-collapse": "^3.0.0-pre.18",
