@@ -3,7 +3,6 @@ import { css, html, LitElement } from 'lit';
 import '@polymer/polymer/polymer-legacy.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import { findComposedAncestor, isComposedAncestor } from '@brightspace-ui/core/helpers/dom.js';
 import { offscreenStyles } from '@brightspace-ui/core/components/offscreen/offscreen.js';
 
@@ -83,12 +82,12 @@ class LabsAccordionCollapse extends LitElement {
 				display: block;
 			}
 			#interactive-header-content{
-				@apply --layout-horizontal;
-				@apply --layout-center;
+				align-items: center;
+				display: flex;
 			}
 			#trigger {
-				@apply --layout-horizontal;
-				@apply --layout-center;
+				align-items: center;
+				display: flex;
 				text-decoration: none;
 			}
 			#trigger:focus-visible {
@@ -103,7 +102,8 @@ class LabsAccordionCollapse extends LitElement {
 				color: inherit;
 			}
 			:host([flex]) .collapse-title {
-				@apply --layout-flex;
+				flex: 1;
+        flex-basis: 0.000000001px;
 				overflow: hidden;
 			}
 			:host([icon-has-padding]) d2l-icon {
