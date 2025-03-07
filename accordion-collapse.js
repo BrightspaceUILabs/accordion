@@ -1,5 +1,5 @@
 import '@brightspace-ui/core/components/expand-collapse/expand-collapse-content.js';
-import { css, html, LitElement } from 'lit';
+import { css, html, LitElement, nothing } from 'lit';
 import '@polymer/polymer/polymer-legacy.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
@@ -237,7 +237,6 @@ class LabsAccordionCollapse extends LitElement {
 	firstUpdated(changedProperties) {
 		super.firstUpdated(changedProperties);
 		this._boundListener = this._onStateChanged.bind(this);
-		this.shadowRoot.querySelector('#trigger').setAttribute('aria-expanded', this.opened);
 		const styleElement = document.createElement('style');
 		styleElement.textContent = offscreenStyles.cssText;
 		this.shadowRoot.appendChild(styleElement);
@@ -262,12 +261,12 @@ class LabsAccordionCollapse extends LitElement {
 			</template>
 
 			<div id="header-container">
-				<a href="javascript:void(0)" id="trigger" class="header-grid-item" aria-controls="collapse" role="button" data-border$="${this.headerBorder}" @blur=${this._triggerBlur} @click=${this.toggle} @focus=${this._triggerFocus}>
+				<a href="javascript:void(0)" id="trigger" ?aria-expanded=${this.opened} class="header-grid-item" aria-controls="collapse" role="button" ?data-border="${this.headerBorder}" @blur=${this._triggerBlur} @click=${this.toggle} @focus=${this._triggerFocus}>
 					${!this.headerHasInteractiveContent ? html`
 						<div class="collapse-title" title="${this.label}">${this.title}${this.label}<slot name="header"></slot>
 						</div>
 						${!this.noIcons ? html`
-							<d2l-icon icon="${this._toggle(opened, collapseIcon, expandIcon)}"></d2l-icon>
+							<d2l-icon icon="${this.opened ? this.collapseIcon : this.expandIcon}"></d2l-icon>
 						` : nothing}
 					` : html`
 						<span class="d2l-offscreen">${this.screenReaderHeaderText}</span>
@@ -278,16 +277,16 @@ class LabsAccordionCollapse extends LitElement {
 						<div class="collapse-title" title="${this.label}">${this.title}${this.label}<slot name="header"></slot>
 						</div>
 						${!this.noIcons ? html`
-							<d2l-icon icon="${this._toggle(opened, collapseIcon, expandIcon)}"></d2l-icon>
+							<d2l-icon icon="${this.opened ? this.collapseIcon : this.expandIcon}"></d2l-icon>
 						` : nothing}
 					</div>
 				` : nothing}
 			</div>
 
 			<div class="content">
-				<d2l-expand-collapse id="detail" class="detail"  ?expanded=${this.opened} @d2l-expand-collapse-content-expand=${this._handleExpand} @d2l-expand-collapse-content-collapse=${this._handleCollapse}>
+				<d2l-expand-collapse-content id="detail" class="detail"  ?expanded=${this.opened} @d2l-expand-collapse-content-expand=${this._handleExpand} @d2l-expand-collapse-content-collapse=${this._handleCollapse}>
 					<slot></slot>
-				</d2l-expand-collapse>
+				</d2l-expand-collapse-content>
 				<div class="summary">
 					<slot name="summary"></slot>
 				</div>
@@ -297,7 +296,7 @@ class LabsAccordionCollapse extends LitElement {
 	}
 
 	toggle() {
-		this.fire('d2l-labs-accordion-collapse-clicked');
+		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-clicked'))
 		if (this.disabled) {
 			return;
 		}
@@ -378,10 +377,15 @@ class LabsAccordionCollapse extends LitElement {
 
 	_notifyStateChanged() {
 		if (this.opened) {
-			this.fire('d2l-labs-accordion-collapse-state-opened');
+			this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-state-opened'));
 		}
-		this.fire('d2l-labs-accordion-collapse-state-changed', { opened: this.opened, el: this });
-		this.shadowRoot.querySelector('#trigger').setAttribute('aria-expanded', this.opened);
+		this.dispatchEvent(new CustomEvent(
+			'd2l-labs-accordion-collapse-state-changed', {
+				bubbles: true,
+				composed: true,
+				detail: { opened: this.opened, el: this }
+			}
+		));
 	}
 
 	_onStateChanged(event) {
@@ -405,16 +409,12 @@ class LabsAccordionCollapse extends LitElement {
 		}
 	}
 
-	_toggle(cond,t,f) {
-		return cond ? t : f;
-	}
-
 	_triggerBlur() {
-		this.fire('d2l-labs-accordion-collapse-toggle-blur');
+		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-toggle-blur'));
 	}
 
 	_triggerFocus() {
-		this.fire('d2l-labs-accordion-collapse-toggle-focus');
+		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-toggle-focus'));
 	}
 
 	#resizeObserver;
