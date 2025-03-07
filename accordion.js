@@ -1,19 +1,15 @@
-import { css, html, LitElement } from 'lit';
 import '@polymer/polymer/polymer-legacy.js';
 import './accordion-collapse.js';
+import { css, html, LitElement } from 'lit';
 
 class LabsAccordion extends LitElement {
 	static get properties() {
 		return {
 			/**
-			 * Indicates the component is an accordion.
-			 */
-			_isAccordion: { type: Boolean, attribute: 'is-accordion' },
-			/**
 			 * Whether to automatically close other opened branches
 			 */
 			autoClose: { type: Boolean, attribute: 'auto-close' },
-			selected: {  }
+			_selected: { type: Number }
 		};
 	}
 
@@ -28,52 +24,57 @@ class LabsAccordion extends LitElement {
 
 	constructor() {
 		super();
-		this._handleAccordionOpened = this._handleAccordionOpened.bind(this);this._isAccordion = true;
+		this._handleAccordionOpened = this._handleAccordionOpened.bind(this);
 		this.autoClose = false;
 	}
 
+	get selected() {
+		return this._selected;
+	}
+
+	set selected(val) {
+		this.select(val);
+	}
+
 	get isAccordion() {
-		return this._isAccordion;
+		return true;
+	}
+
+	get items() {
+		return [...this.querySelectorAll('d2l-labs-accordion-collapse')];
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.addEventListener('d2l-labs-accordion-collapse-state-opened', this._handleAccordionOpened)
+		this.addEventListener('d2l-labs-accordion-collapse-state-opened', this._handleAccordionOpened);
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		this.removeEventListener('d2l-labs-accordion-collapse-state-opened', this._handleAccordionOpened)
+		this.removeEventListener('d2l-labs-accordion-collapse-state-opened', this._handleAccordionOpened);
 	}
 
 	render() {
 		return html`
 				<slot></slot>
-
 		`;
 	}
 
-	willUpdate(changedProperties) {
-		super.willUpdate(changedProperties);
-		if (changedProperties.has('selected')) {
-			this._updateSelected(this.selected);
-		}
+	select(selected) {
+		this._selected = selected;
+		const items = this.items;
 
+		for (const i in items) {
+			items[i].opened = Number(i) === selected;
+		}
 	}
 
 	_handleAccordionOpened(e) {
-		this._updateSelected(this.items.indexOf(e.target))
+		this.select(this.items.indexOf(e.target));
 	}
 
 	_setisAccordion(val) {
 		this._isAccordion = val;
-	}
-
-	_updateSelected(selected) {
-		const items = this.items;
-		for (const i in items) {
-			items[i].opened = i === selected;
-		}
 	}
 }
 
