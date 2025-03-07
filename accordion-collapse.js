@@ -195,7 +195,12 @@ class LabsAccordionCollapse extends LitElement {
 			return;
 		}
 		window.addEventListener('d2l-labs-accordion-collapse-state-changed', this._boundListener);
-		this.shadowRoot.querySelector('#detail').addEventListener('iron-resize', this._fireAccordionResizeEvent);
+		if (!this.#resizeObserver) {
+			this.#resizeObserver = new ResizeObserver(() => {
+				this._fireAccordionResizeEvent();
+			});
+			this.#resizeObserver.observe(this);
+		}
 	}
 
 	disconnectedCallback() {
@@ -204,7 +209,10 @@ class LabsAccordionCollapse extends LitElement {
 			return;
 		}
 		window.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._boundListener);
-		this.shadowRoot.querySelector('#detail').removeEventListener('iron-resize', this._fireAccordionResizeEvent);
+		if (this.#resizeObserver) {
+		 	this.#resizeObserver.disconnect();
+		 	this.#resizeObserver = null;
+		}
 	}
 
 	firstUpdated(changedProperties) {
@@ -389,6 +397,8 @@ class LabsAccordionCollapse extends LitElement {
 	_triggerFocus() {
 		this.fire('d2l-labs-accordion-collapse-toggle-focus');
 	}
+
+	#resizeObserver;
 }
 
 customElements.define('d2l-labs-accordion-collapse', LabsAccordionCollapse);
