@@ -97,22 +97,20 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			:host([disable-default-trigger-focus]) #trigger:focus {
 				outline: none;
 			}
+
+			:host([header-has-interactive-content]) #header-container {
+				display: grid;
+				grid-template-columns: auto;
+				grid-template-rows: auto;
+			}
+			:host([header-has-interactive-content]) .header-grid-item {
+				grid-column: 1;
+				grid-row: 1;
+			}
+			:host([header-has-interactive-content]) #interactive-header-content {
+				cursor: pointer;
+			}
 		</style>
-		<template is="dom-if" if="[[headerHasInteractiveContent]]">
-			<style>
-				#header-container {
-					display: grid;
-					grid-template-columns: auto;
-					grid-template-rows: auto;
-				}
-				.header-grid-item {
-					grid-column: 1;
-					grid-row: 1;
-				}
-				#interactive-header-content {
-					cursor: pointer;
-				}
-			</style>
 		</template>
 
 		<div id="header-container">
