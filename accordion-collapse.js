@@ -181,6 +181,25 @@ class LabsAccordionCollapse extends LitElement {
 		`;
 	}
 
+	constructor() {
+		super();
+		this.title = '';
+		this.label = '';
+		this.screenReaderHeaderText = '';
+		this.noAnimation = false;
+		this.opened = false;
+		this.expandIcon = 'd2l-tier1:arrow-expand';
+		this.collapseIcon = 'd2l-tier1:arrow-collapse';
+		this.noIcons = false;
+		this.flex = false;
+		this.iconHasPadding = false;
+		this.headerBorder = false;
+		this.disabled = false;
+		this.disableDefaultTriggerFocus = false;
+		this.headerHasInteractiveContent = false;
+		this._state = 'closed';
+	}
+
 	close() {
 		if (this.disabled) {
 			return;
