@@ -1,8 +1,8 @@
 import '@brightspace-ui/core/components/expand-collapse/expand-collapse-content.js';
-import { css, html, LitElement, nothing } from 'lit';
 import '@polymer/polymer/polymer-legacy.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
+import { css, html, LitElement, nothing } from 'lit';
 import { findComposedAncestor, isComposedAncestor } from '@brightspace-ui/core/helpers/dom.js';
 import { offscreenStyles } from '@brightspace-ui/core/components/offscreen/offscreen.js';
 
@@ -77,7 +77,7 @@ class LabsAccordionCollapse extends LitElement {
 	}
 
 	static get styles() {
-		return css`
+		return [offscreenStyles, css`
 			:host {
 				display: block;
 			}
@@ -131,9 +131,6 @@ class LabsAccordionCollapse extends LitElement {
 			.summary {
 				transition: opacity 500ms ease;
 			}
-			iron-collapse {
-				--iron-collapse-transition-duration: 700ms;
-			}
 			:host([_state="closing"]) .content,
 			:host([_state="opening"]) .content {
 				overflow: hidden;
@@ -178,9 +175,10 @@ class LabsAccordionCollapse extends LitElement {
 			:host([header-has-interactive-content]) #interactive-header-content {
 				cursor: pointer;
 			}
-		`;
+		`];
 	}
 
+	#resizeObserver;
 	constructor() {
 		super();
 		this.title = '';
@@ -198,6 +196,8 @@ class LabsAccordionCollapse extends LitElement {
 		this.disableDefaultTriggerFocus = false;
 		this.headerHasInteractiveContent = false;
 		this._state = 'closed';
+
+		this._boundListener = this._onStateChanged.bind(this);
 	}
 
 	close() {
@@ -229,28 +229,14 @@ class LabsAccordionCollapse extends LitElement {
 		}
 		window.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._boundListener);
 		if (this.#resizeObserver) {
-		 	this.#resizeObserver.disconnect();
-		 	this.#resizeObserver = null;
+			this.#resizeObserver.disconnect();
+			this.#resizeObserver = null;
 		}
-	}
-
-	firstUpdated(changedProperties) {
-		super.firstUpdated(changedProperties);
-		this._boundListener = this._onStateChanged.bind(this);
-		const styleElement = document.createElement('style');
-		styleElement.textContent = offscreenStyles.cssText;
-		this.shadowRoot.appendChild(styleElement);
 	}
 
 	open() {
 		if (this.disabled) {
 			return;
-		}
-		const ironCollapse = this.shadowRoot.querySelector('#detail');
-		const inTransition = ironCollapse.transitioning === true && ironCollapse.opened === false;
-		if (!inTransition) {
-			const content = this.shadowRoot.querySelector('.content');
-			content.style.minHeight = `${content.offsetHeight - 2}px`;
 		}
 		this.opened = true;
 		this._notifyStateChanged();
@@ -284,7 +270,7 @@ class LabsAccordionCollapse extends LitElement {
 			</div>
 
 			<div class="content">
-				<d2l-expand-collapse-content id="detail" class="detail"  ?expanded=${this.opened} @d2l-expand-collapse-content-expand=${this._handleExpand} @d2l-expand-collapse-content-collapse=${this._handleCollapse}>
+				<d2l-expand-collapse-content ?expanded=${this.opened} @d2l-expand-collapse-content-expand=${this._handleExpand} @d2l-expand-collapse-content-collapse=${this._handleCollapse}>
 					<slot></slot>
 				</d2l-expand-collapse-content>
 				<div class="summary">
@@ -296,7 +282,7 @@ class LabsAccordionCollapse extends LitElement {
 	}
 
 	toggle() {
-		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-clicked'))
+		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-clicked'));
 		if (this.disabled) {
 			return;
 		}
@@ -304,6 +290,19 @@ class LabsAccordionCollapse extends LitElement {
 			this.close();
 		} else {
 			this.open();
+		}
+	}
+
+	updated(changedProperties) {
+		super.updated(changedProperties);
+		if (changedProperties.has('_state')) {
+			const content = this.shadowRoot.querySelector('.content');
+			if (this._state === 'opening') {
+				content.style.minHeight = `${content.offsetHeight - 2}px`;
+			}
+			if (this._state === 'closed') {
+				content.style.removeProperty('min-height');
+			}
 		}
 	}
 
@@ -326,41 +325,16 @@ class LabsAccordionCollapse extends LitElement {
 	}
 
 	_handleCollapse(e) {
-		// TODO: Missing implementation
+		this._state = 'closing';
+		e.detail.collapseComplete.then(() => this._state = 'closed');
 	}
 
 	_handleExpand(e) {
-		// TODO: Missing implementation
+		this._state = 'opening';
+		e.detail.expandComplete.then(() => this._state = 'opened');
 	}
 
-	_handleTransitionChanged(event) {
-		const opened = event.target.opened === true;
-		const transitioning = event.target.transitioning === true;
-		const isClosing = !opened && transitioning;
-		if (isClosing) {
-			this._state = 'closing';
-			return;
-		}
-		const isClosed = !opened && !transitioning;
-		if (isClosed) {
-			this._state = 'closed';
-			const content = this.shadowRoot.querySelector('.content');
-			content.style.removeProperty('min-height');
-			return;
-		}
-		const isOpening = opened && transitioning;
-		if (isOpening) {
-			this._state = 'opening';
-			return;
-		}
-		const isOpened = opened && !transitioning;
-		if (isOpened) {
-			this._state = 'opened';
-			return;
-		}
-	}
-
-	_haveSharedAutoCloseAccordionAncestor(node1,node2) {
+	_haveSharedAutoCloseAccordionAncestor(node1, node2) {
 		const accordionAncestor = findComposedAncestor(node1, (elem) => {
 			if (elem.isAccordion && elem.autoClose) {
 				return true;
@@ -416,8 +390,6 @@ class LabsAccordionCollapse extends LitElement {
 	_triggerFocus() {
 		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-toggle-focus'));
 	}
-
-	#resizeObserver;
 }
 
 customElements.define('d2l-labs-accordion-collapse', LabsAccordionCollapse);
