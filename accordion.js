@@ -1,4 +1,3 @@
-import '@polymer/polymer/polymer-legacy.js';
 import './accordion-collapse.js';
 import { css, html, LitElement } from 'lit';
 

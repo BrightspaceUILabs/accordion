@@ -1,5 +1,4 @@
 import '@brightspace-ui/core/components/expand-collapse/expand-collapse-content.js';
-import '@polymer/polymer/polymer-legacy.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
 import { css, html, LitElement, nothing } from 'lit';
@@ -178,7 +177,6 @@ class LabsAccordionCollapse extends LitElement {
 		`];
 	}
 
-	#resizeObserver;
 	constructor() {
 		super();
 		this.title = '';
@@ -199,15 +197,6 @@ class LabsAccordionCollapse extends LitElement {
 
 		this._boundListener = this._onStateChanged.bind(this);
 	}
-
-	close() {
-		if (this.disabled) {
-			return;
-		}
-		this.opened = false;
-		this._notifyStateChanged();
-	}
-
 	connectedCallback() {
 		super.connectedCallback();
 		if (this.disabled) {
@@ -221,7 +210,6 @@ class LabsAccordionCollapse extends LitElement {
 			this.#resizeObserver.observe(this);
 		}
 	}
-
 	disconnectedCallback() {
 		super.disconnectedCallback();
 		if (this.disabled) {
@@ -233,19 +221,8 @@ class LabsAccordionCollapse extends LitElement {
 			this.#resizeObserver = null;
 		}
 	}
-
-	open() {
-		if (this.disabled) {
-			return;
-		}
-		this.opened = true;
-		this._notifyStateChanged();
-	}
-
 	render() {
 		return html`
-			</template>
-
 			<div id="header-container">
 				<a href="javascript:void(0)" id="trigger" ?aria-expanded=${this.opened} class="header-grid-item" aria-controls="collapse" role="button" ?data-border="${this.headerBorder}" @blur=${this._triggerBlur} @click=${this.toggle} @focus=${this._triggerFocus}>
 					${!this.headerHasInteractiveContent ? html`
@@ -280,19 +257,6 @@ class LabsAccordionCollapse extends LitElement {
 
 		`;
 	}
-
-	toggle() {
-		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-clicked'));
-		if (this.disabled) {
-			return;
-		}
-		if (this.opened) {
-			this.close();
-		} else {
-			this.open();
-		}
-	}
-
 	updated(changedProperties) {
 		super.updated(changedProperties);
 		if (changedProperties.has('_state')) {
@@ -305,7 +269,6 @@ class LabsAccordionCollapse extends LitElement {
 			}
 		}
 	}
-
 	willUpdate(changedProperties) {
 		super.willUpdate(changedProperties);
 		if (changedProperties.has('opened')) {
@@ -316,6 +279,32 @@ class LabsAccordionCollapse extends LitElement {
 		}
 
 	}
+	close() {
+		if (this.disabled) {
+			return;
+		}
+		this.opened = false;
+		this._notifyStateChanged();
+	}
+	open() {
+		if (this.disabled) {
+			return;
+		}
+		this.opened = true;
+		this._notifyStateChanged();
+	}
+	toggle() {
+		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-clicked'));
+		if (this.disabled) {
+			return;
+		}
+		if (this.opened) {
+			this.close();
+		} else {
+			this.open();
+		}
+	}
+	#resizeObserver;
 
 	_fireAccordionResizeEvent() {
 		const event = new CustomEvent('d2l-labs-accordion-collapse-resize', {

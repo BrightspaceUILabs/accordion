@@ -1,6 +1,6 @@
 {
   "name": "@brightspace-ui-labs/accordion",
-  "description": "Polymer-based accordion component",
+  "description": "Lit-based accordion component",
   "type": "module",
   "keywords": [
     "web-components",
@@ -33,16 +33,12 @@
   "devDependencies": {
     "@brightspace-ui/testing": "^1",
     "@web/dev-server": "^0.4",
-    "eslint": "^8",
-    "eslint-config-brightspace": "^0.25"
+    "eslint": "^9",
+    "eslint-config-brightspace": "^2"
   },
   "version": "4.1.0",
   "dependencies": {
     "lit":"^3",
-    "@brightspace-ui/core": "^3",
-    "@polymer/iron-collapse": "^3.0.0-pre.18",
-    "@polymer/iron-flex-layout": "^3.0.0-pre.18",
-    "@polymer/iron-selector": "^3.0.0-pre.18",
-    "@polymer/polymer": "^3"
+    "@brightspace-ui/core": "^3"
   }
 }

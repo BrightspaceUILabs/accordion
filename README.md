@@ -16,7 +16,7 @@
 > - [x] Demo page
 > - [ ] README documentation
 
-Polymer-based widget that displays a list of collapsible components. When collapsible component is clicked - it expands or collapses the associated content.
+Lit-based widget that displays a list of collapsible components. When collapsible component is clicked - it expands or collapses the associated content.
 
 ## Installation
 
@@ -24,7 +24,7 @@ Polymer-based widget that displays a list of collapsible components. When collap
 npm install @brightspace-ui-labs/accordion
 ```
 
-## Polymer components:
+## Lit components:
 ### **d2l-labs-accordion** - accordion panel.
 #### Attributes:
 * multi - allows multiple collapsibles to be opened at the same time
