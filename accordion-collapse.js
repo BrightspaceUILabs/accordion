@@ -43,7 +43,7 @@ class LabsAccordionCollapse extends LitElement {
 			/**
 			 * Whether or not to use flex layout.
 			 */
-			flex: { type: Boolean },
+			flex: { type: Boolean, reflect: true },
 			/**
 			 * Whether or not to add extra padding for icon.
 			 */
@@ -63,7 +63,7 @@ class LabsAccordionCollapse extends LitElement {
 			/**
 			 * Whether or not the header contains an interactive element inside it (e.g. clickable)
 			 */
-			headerHasInteractiveContent: { type: Boolean, attribute: 'header-has-interactive-content' },
+			headerHasInteractiveContent: { type: Boolean, attribute: 'header-has-interactive-content', reflect: true },
 			/**
 			 * Listener for state changes.
 			 */
@@ -204,9 +204,7 @@ class LabsAccordionCollapse extends LitElement {
 		}
 		window.addEventListener('d2l-labs-accordion-collapse-state-changed', this._boundListener);
 		if (!this.#resizeObserver) {
-			this.#resizeObserver = new ResizeObserver(() => {
-				this._fireAccordionResizeEvent();
-			});
+			this.#resizeObserver = new ResizeObserver(() => this._fireAccordionResizeEvent());
 			this.#resizeObserver.observe(this);
 		}
 	}
