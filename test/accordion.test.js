@@ -24,9 +24,9 @@ describe('d2l-labs-accordion', () => {
 		expect(myEl.items[0].opened).to.be.false;
 		expect(myEl.items[1].opened).to.be.false;
 		expect(myEl.items[2].opened).to.be.false;
-		expect(myEl.items[0].$$('.collapse-title').title).to.equal('');
-		expect(myEl.items[1].$$('.collapse-title').title).to.equal('');
-		expect(myEl.items[2].$$('.collapse-title').title).to.equal('');
+		expect(myEl.items[0].shadowRoot.querySelector('.collapse-title').title).to.equal('');
+		expect(myEl.items[1].shadowRoot.querySelector('.collapse-title').title).to.equal('');
+		expect(myEl.items[2].shadowRoot.querySelector('.collapse-title').title).to.equal('');
 	});
 
 	it('state change', async() => {
@@ -43,15 +43,15 @@ describe('d2l-labs-accordion', () => {
 	it('trigger test', async() => {
 		const myEl = await fixture(accordionCollapseFixture);
 		expect(myEl.items[0].opened).to.be.false;
-		myEl.items[0].$.trigger.click();
+		myEl.items[0].shadowRoot.querySelector('#trigger').click();
 		expect(myEl.items[0].opened).to.be.true;
 	});
 
 	it('label instead of title', async() => {
 		const myEl = await fixture(accordionCollapseFixtureLabel);
-		expect(myEl.items[0].$$('.collapse-title').title).to.equal('Item 1');
-		expect(myEl.items[1].$$('.collapse-title').title).to.equal('Item 2');
-		expect(myEl.items[2].$$('.collapse-title').title).to.equal('Item 3');
+		expect(myEl.items[0].shadowRoot.querySelector('.collapse-title').title).to.equal('Item 1');
+		expect(myEl.items[1].shadowRoot.querySelector('.collapse-title').title).to.equal('Item 2');
+		expect(myEl.items[2].shadowRoot.querySelector('.collapse-title').title).to.equal('Item 3');
 	});
 
 });

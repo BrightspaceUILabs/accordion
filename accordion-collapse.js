@@ -1,26 +1,92 @@
-import '@polymer/polymer/polymer-legacy.js';
+import '@brightspace-ui/core/components/expand-collapse/expand-collapse-content.js';
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
-import '@polymer/iron-collapse/iron-collapse.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import { css, html, LitElement, nothing } from 'lit';
 import { findComposedAncestor, isComposedAncestor } from '@brightspace-ui/core/helpers/dom.js';
 import { offscreenStyles } from '@brightspace-ui/core/components/offscreen/offscreen.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
-	<template strip-whitespace="">
-		<style is="custom-style">
+class LabsAccordionCollapse extends LitElement {
+	static get properties() {
+		return {
+			/**
+			 * Label title
+			 */
+			title: { type: String },
+			/**
+			 * Label. Does not apply title to entire accordion
+			 */
+			label: { type: String },
+			/**
+			 * Header text hidden on the screen, but to be read by a screen reader
+			 */
+			screenReaderHeaderText: { type: String, attribute: 'screen-reader-header-text' },
+			/**
+			 * Corresponds to the iron-collapse's noAnimation property.
+			 */
+			noAnimation: { type: Boolean, attribute: 'no-animation' },
+			/**
+			 * Whether currently expanded.
+			 */
+			opened: { type: Boolean, reflect: true },
+			/**
+			 * The icon when collapsed.
+			 */
+			expandIcon: { type: String, attribute: 'expand-icon' },
+			/**
+			 * The icon when expanded.
+			 */
+			collapseIcon: { type: String, attribute: 'collapse-icon' },
+			/**
+			 * Whether to hide the expand/collapse icon.
+			 */
+			noIcons: { type: Boolean, attribute: 'no-icons' },
+			/**
+			 * Whether or not to use flex layout.
+			 */
+			flex: { type: Boolean, reflect: true },
+			/**
+			 * Whether or not to add extra padding for icon.
+			 */
+			iconHasPadding: { type: Boolean, attribute: 'icon-has-padding', reflect: true },
+			/**
+			 * Whether or not to add a border between the header and the content.
+			 */
+			headerBorder: { type: Boolean, attribute: 'header-border' },
+			/**
+			 * Whether the accordion's expand/collapse function is disabled.
+			 */
+			disabled: { type: Boolean, reflect: true },
+			/**
+			 * Whether or not to disable default focus styles
+			 */
+			disableDefaultTriggerFocus: { type: Boolean, attribute: 'disable-default-trigger-focus', reflect: true },
+			/**
+			 * Whether or not the header contains an interactive element inside it (e.g. clickable)
+			 */
+			headerHasInteractiveContent: { type: Boolean, attribute: 'header-has-interactive-content', reflect: true },
+			/**
+			 * Listener for state changes.
+			 */
+			_boundListener: { type: Function, attribute: '_bound-listener' },
+			/**
+			 * The current state of the accordion (opened, closed)
+			 */
+			_state: { type: String, reflect: true }
+		};
+	}
+
+	static get styles() {
+		return [offscreenStyles, css`
 			:host {
 				display: block;
 			}
 			#interactive-header-content{
-				@apply --layout-horizontal;
-				@apply --layout-center;
+				align-items: center;
+				display: flex;
 			}
 			#trigger {
-				@apply --layout-horizontal;
-				@apply --layout-center;
+				align-items: center;
+				display: flex;
 				text-decoration: none;
 			}
 			#trigger:focus-visible {
@@ -35,7 +101,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 				color: inherit;
 			}
 			:host([flex]) .collapse-title {
-				@apply --layout-flex;
+				flex: 1;
+        flex-basis: 0.000000001px;
 				overflow: hidden;
 			}
 			:host([icon-has-padding]) d2l-icon {
@@ -62,9 +129,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			}
 			.summary {
 				transition: opacity 500ms ease;
-			}
-			iron-collapse {
-				--iron-collapse-transition-duration: 700ms;
 			}
 			:host([_state="closing"]) .content,
 			:host([_state="opening"]) .content {
@@ -97,237 +161,138 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion-collapse">
 			:host([disable-default-trigger-focus]) #trigger:focus {
 				outline: none;
 			}
-		</style>
-		<template is="dom-if" if="[[headerHasInteractiveContent]]">
-			<style>
-				#header-container {
-					display: grid;
-					grid-template-columns: auto;
-					grid-template-rows: auto;
-				}
-				.header-grid-item {
-					grid-column: 1;
-					grid-row: 1;
-				}
-				#interactive-header-content {
-					cursor: pointer;
-				}
-			</style>
-		</template>
 
-		<div id="header-container">
-			<a href="javascript:void(0)" id="trigger" class="header-grid-item" aria-controls="collapse" role="button" data-border$="[[headerBorder]]" on-blur="_triggerBlur" on-click="toggle" on-focus="_triggerFocus">
-				<template is="dom-if" if="[[!headerHasInteractiveContent]]">
-					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
-					</div>
-					<template is="dom-if" if="[[!noIcons]]">
-						<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
-					</template>
-				</template>
-				<template is="dom-if" if="[[headerHasInteractiveContent]]">
-					<span class="d2l-offscreen">[[screenReaderHeaderText]]</span>
-				</template>
-			</a>
-			<template is="dom-if" if="[[headerHasInteractiveContent]]">
-				<div id="interactive-header-content" class="header-grid-item" on-click="toggle">
-					<div class="collapse-title" title="[[label]]">[[title]][[label]]<slot name="header"></slot>
-					</div>
-					<template is="dom-if" if="[[!noIcons]]">
-						<d2l-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]"></d2l-icon>
-					</template>
-				</div>
-			</template>
-		</div>
+			:host([header-has-interactive-content]) #header-container {
+				display: grid;
+				grid-template-columns: auto;
+				grid-template-rows: auto;
+			}
+			:host([header-has-interactive-content]) .header-grid-item {
+				grid-column: 1;
+				grid-row: 1;
+			}
+			:host([header-has-interactive-content]) #interactive-header-content {
+				cursor: pointer;
+			}
+		`];
+	}
 
-		<div class="content">
-			<iron-collapse id="detail" class="detail" no-animation="[[noAnimation]]" opened="[[opened]]" on-transitioning-changed="_handleTransitionChanged">
-				<slot></slot>
-			</iron-collapse>
-			<div class="summary">
-				<slot name="summary"></slot>
-			</div>
-		</div>
-	</template>
-</dom-module>`;
+	constructor() {
+		super();
+		this.title = '';
+		this.label = '';
+		this.screenReaderHeaderText = '';
+		this.noAnimation = false;
+		this.opened = false;
+		this.expandIcon = 'd2l-tier1:arrow-expand';
+		this.collapseIcon = 'd2l-tier1:arrow-collapse';
+		this.noIcons = false;
+		this.flex = false;
+		this.iconHasPadding = false;
+		this.headerBorder = false;
+		this.disabled = false;
+		this.disableDefaultTriggerFocus = false;
+		this.headerHasInteractiveContent = false;
+		this._state = 'closed';
 
-document.head.appendChild($_documentContainer.content);
-/**
- * `d2l-labs-accordion-collapse`
- * An iron-collapse with a trigger section and optional expand/collapse icons.
- * Originally taken from: https://www.webcomponents.org/element/jifalops/iron-collapse-button
- *
- * @demo demo/accordion-collapse.html
- */
-Polymer({
-	is: 'd2l-labs-accordion-collapse',
-	properties: {
-		/**
-		 * Label title
-		 */
-		title: {
-			type: String,
-			value: ''
-		},
-		/**
-		 * Label. Does not apply title to entire accordion
-		 */
-		label: {
-			type: String,
-			value: ''
-		},
-		/**
-		 * Header text hidden on the screen, but to be read by a screen reader
-		 */
-		screenReaderHeaderText: {
-			type: String,
-			value: ''
-		},
-		/**
-		 * Corresponds to the iron-collapse's noAnimation property.
-		 */
-		noAnimation: {
-			type: Boolean,
-			value: false
-		},
-		/**
-		 * Whether currently expanded.
-		 */
-		opened: {
-			type: Boolean,
-			value: false,
-			notify: true,
-			observer: '_notifyStateChanged',
-			reflectToAttribute: true
-		},
-		/**
-		 * The icon when collapsed.
-		 */
-		expandIcon: {
-			type: String,
-			value: 'd2l-tier1:arrow-expand'
-		},
-		/**
-		 * The icon when expanded.
-		 */
-		collapseIcon: {
-			type: String,
-			value: 'd2l-tier1:arrow-collapse'
-		},
-		/**
-		 * Whether to hide the expand/collapse icon.
-		 */
-		noIcons: {
-			type: Boolean,
-			value: false
-		},
-		/**
-		 * Whether or not to use flex layout.
-		 */
-		flex: {
-			type: Boolean,
-			value: false
-		},
-		/**
-		 * Whether or not to add extra padding for icon.
-		 */
-		iconHasPadding: {
-			type: Boolean,
-			reflectToAttribute: true,
-			value: false
-		},
-		/**
-		 * Whether or not to add a border between the header and the content.
-		 */
-		headerBorder: {
-			type: Boolean,
-			value: false
-		},
-		/**
-		 * Whether the accordion's expand/collapse function is disabled.
-		 */
-		disabled: {
-			reflectToAttribute: true,
-			type: Boolean,
-			value: false
-		},
-		/**
-		 * Whether or not to disable default focus styles
-		 */
-		disableDefaultTriggerFocus: {
-			type: Boolean,
-			reflectToAttribute: true,
-			value: false
-		},
-		/**
-		 * Whether or not the header contains an interactive element inside it (e.g. clickable)
-		 */
-		headerHasInteractiveContent: {
-			type: Boolean,
-			value: false
-		},
-		/**
-		 * Listener for state changes.
-		 */
-		_boundListener: {
-			type: Function
-		},
-		/**
-		 * The current state of the accordion (opened, closed)
-		 */
-		_state: {
-			type: String,
-			reflectToAttribute: true,
-			value: 'closed'
-		}
-	},
-	ready: function() {
 		this._boundListener = this._onStateChanged.bind(this);
-		this.$.trigger.setAttribute('aria-expanded', this.opened);
-
-		const styleElement = document.createElement('style');
-		styleElement.textContent = offscreenStyles.cssText;
-		this.shadowRoot.appendChild(styleElement);
-	},
-
-	attached: function() {
+	}
+	connectedCallback() {
+		super.connectedCallback();
 		if (this.disabled) {
 			return;
 		}
 		window.addEventListener('d2l-labs-accordion-collapse-state-changed', this._boundListener);
-		this.$.detail.addEventListener('iron-resize', this._fireAccordionResizeEvent);
-	},
-
-	detached: function() {
+		if (!this.#resizeObserver) {
+			this.#resizeObserver = new ResizeObserver(() => this._fireAccordionResizeEvent());
+			this.#resizeObserver.observe(this);
+		}
+	}
+	disconnectedCallback() {
+		super.disconnectedCallback();
 		if (this.disabled) {
 			return;
 		}
 		window.removeEventListener('d2l-labs-accordion-collapse-state-changed', this._boundListener);
-		this.$.detail.removeEventListener('iron-resize', this._fireAccordionResizeEvent);
-	},
-	open: function() {
-		if (this.disabled) {
-			return;
+		if (this.#resizeObserver) {
+			this.#resizeObserver.disconnect();
+			this.#resizeObserver = null;
 		}
+	}
+	render() {
+		return html`
+			<div id="header-container">
+				<a href="javascript:void(0)" id="trigger" ?aria-expanded=${this.opened} class="header-grid-item" aria-controls="collapse" role="button" ?data-border="${this.headerBorder}" @blur=${this._triggerBlur} @click=${this.toggle} @focus=${this._triggerFocus}>
+					${!this.headerHasInteractiveContent ? html`
+						<div class="collapse-title" title="${this.label}">${this.title}${this.label}<slot name="header"></slot>
+						</div>
+						${!this.noIcons ? html`
+							<d2l-icon icon="${this.opened ? this.collapseIcon : this.expandIcon}"></d2l-icon>
+						` : nothing}
+					` : html`
+						<span class="d2l-offscreen">${this.screenReaderHeaderText}</span>
+					`}
+				</a>
+				${this.headerHasInteractiveContent ? html`
+					<div id="interactive-header-content" class="header-grid-item" @click=${this.toggle}>
+						<div class="collapse-title" title="${this.label}">${this.title}${this.label}<slot name="header"></slot>
+						</div>
+						${!this.noIcons ? html`
+							<d2l-icon icon="${this.opened ? this.collapseIcon : this.expandIcon}"></d2l-icon>
+						` : nothing}
+					</div>
+				` : nothing}
+			</div>
 
-		const ironCollapse = this.$.detail;
-		const inTransition = ironCollapse.transitioning === true && ironCollapse.opened === false;
+			<div class="content">
+				<d2l-expand-collapse-content ?expanded=${this.opened} @d2l-expand-collapse-content-expand=${this._handleExpand} @d2l-expand-collapse-content-collapse=${this._handleCollapse}>
+					<slot></slot>
+				</d2l-expand-collapse-content>
+				<div class="summary">
+					<slot name="summary"></slot>
+				</div>
+			</div>
 
-		if (!inTransition) {
+		`;
+	}
+	updated(changedProperties) {
+		super.updated(changedProperties);
+		if (changedProperties.has('_state')) {
 			const content = this.shadowRoot.querySelector('.content');
-			content.style.minHeight = `${content.offsetHeight - 2}px`;
+			if (this._state === 'opening') {
+				content.style.minHeight = `${content.offsetHeight - 2}px`;
+			}
+			if (this._state === 'closed') {
+				content.style.removeProperty('min-height');
+			}
 		}
-		this.opened = true;
-		this._notifyStateChanged();
-	},
-	close: function() {
+	}
+	willUpdate(changedProperties) {
+		super.willUpdate(changedProperties);
+		if (changedProperties.has('opened')) {
+			this.dispatchEvent(new CustomEvent('opened-changed',
+				{ bubbles: true, composed: true, detail: { value: this.opened } }
+			));
+			this._notifyStateChanged(this.opened);
+		}
+
+	}
+	close() {
 		if (this.disabled) {
 			return;
 		}
 		this.opened = false;
 		this._notifyStateChanged();
-	},
-	toggle: function() {
-		this.fire('d2l-labs-accordion-collapse-clicked');
+	}
+	open() {
+		if (this.disabled) {
+			return;
+		}
+		this.opened = true;
+		this._notifyStateChanged();
+	}
+	toggle() {
+		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-clicked'));
 		if (this.disabled) {
 			return;
 		}
@@ -336,46 +301,55 @@ Polymer({
 		} else {
 			this.open();
 		}
-	},
-	_triggerFocus: function() {
-		this.fire('d2l-labs-accordion-collapse-toggle-focus');
-	},
-	_triggerBlur: function() {
-		this.fire('d2l-labs-accordion-collapse-toggle-blur');
-	},
-	_handleTransitionChanged(event) {
+	}
+	#resizeObserver;
 
-		const opened = event.target.opened === true;
-		const transitioning = event.target.transitioning === true;
+	_fireAccordionResizeEvent() {
+		const event = new CustomEvent('d2l-labs-accordion-collapse-resize', {
+			bubbles: true
+		});
+		window.dispatchEvent(event);
+	}
 
-		const isClosing = !opened && transitioning;
-		if (isClosing) {
-			this._state = 'closing';
-			return;
+	_handleCollapse(e) {
+		this._state = 'closing';
+		e.detail.collapseComplete.then(() => this._state = 'closed');
+	}
+
+	_handleExpand(e) {
+		this._state = 'opening';
+		e.detail.expandComplete.then(() => this._state = 'opened');
+	}
+
+	_haveSharedAutoCloseAccordionAncestor(node1, node2) {
+		const accordionAncestor = findComposedAncestor(node1, (elem) => {
+			if (elem.isAccordion && elem.autoClose) {
+				return true;
+			}
+		});
+		if (!accordionAncestor) {
+			return false;
 		}
-
-		const isClosed = !opened && !transitioning;
-		if (isClosed) {
-			this._state = 'closed';
-			const content = this.shadowRoot.querySelector('.content');
-			content.style.removeProperty('min-height');
-			return;
+		if (!isComposedAncestor(accordionAncestor, node2)) {
+			return false;
 		}
+		return true;
+	}
 
-		const isOpening = opened && transitioning;
-		if (isOpening) {
-			this._state = 'opening';
-			return;
+	_notifyStateChanged() {
+		if (this.opened) {
+			this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-state-opened'));
 		}
+		this.dispatchEvent(new CustomEvent(
+			'd2l-labs-accordion-collapse-state-changed', {
+				bubbles: true,
+				composed: true,
+				detail: { opened: this.opened, el: this }
+			}
+		));
+	}
 
-		const isOpened = opened && !transitioning;
-		if (isOpened) {
-			this._state = 'opened';
-			return;
-		}
-	},
-	_toggle: function(cond, t, f) { return cond ? t : f; },
-	_onStateChanged: function(event) {
+	_onStateChanged(event) {
 		if (this.opened
 			&& event.detail.el !== this
 			&& this._haveSharedAutoCloseAccordionAncestor(this, event.detail.el)
@@ -394,32 +368,15 @@ Polymer({
 				this.opened = false;
 			}
 		}
-	},
-	_notifyStateChanged: function() {
-		if (this.opened) {
-			this.fire('d2l-labs-accordion-collapse-state-opened');
-		}
-		this.fire('d2l-labs-accordion-collapse-state-changed', { opened: this.opened, el: this });
-		this.$.trigger.setAttribute('aria-expanded', this.opened);
-	},
-	_haveSharedAutoCloseAccordionAncestor: function(node1, node2) {
-		const accordionAncestor = findComposedAncestor(node1, (elem) => {
-			if (elem.isAccordion && elem.autoClose) {
-				return true;
-			}
-		});
-		if (!accordionAncestor) {
-			return false;
-		}
-		if (!isComposedAncestor(accordionAncestor, node2)) {
-			return false;
-		}
-		return true;
-	},
-	_fireAccordionResizeEvent: function() {
-		const event = new CustomEvent('d2l-labs-accordion-collapse-resize', {
-			bubbles: true
-		});
-		window.dispatchEvent(event);
 	}
-});
+
+	_triggerBlur() {
+		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-toggle-blur'));
+	}
+
+	_triggerFocus() {
+		this.dispatchEvent(new CustomEvent('d2l-labs-accordion-collapse-toggle-focus'));
+	}
+}
+
+customElements.define('d2l-labs-accordion-collapse', LabsAccordionCollapse);

@@ -1,54 +1,80 @@
-import '@polymer/polymer/polymer-legacy.js';
 import './accordion-collapse.js';
-import { IronMultiSelectableBehavior } from '@polymer/iron-selector/iron-multi-selectable.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-const $_documentContainer = document.createElement('template');
+import { css, html, LitElement } from 'lit';
 
-$_documentContainer.innerHTML = `<dom-module id="d2l-labs-accordion">
-	<template strip-whitespace="">
-		<style>
-		:host {
-			display: block;
-			box-sizing: border-box;
-		}
-	</style>
-	<slot></slot>
-	</template>
-
-
-</dom-module>`;
-
-document.head.appendChild($_documentContainer.content);
-/**
- * `d2l-labs-accordion`
- *
- * @demo demo/index.html
- */
-Polymer({
-	is: 'd2l-labs-accordion',
-	properties: {
-		/**
-		 * Indicates the component is an accordion.
-		 */
-		isAccordion: {
-			type: Boolean,
-			readOnly: true,
-			value: true
-		},
-		/**
-		 * Whether to automatically close other opened branches
-		 */
-		autoClose: {
-			type: Boolean,
-			value: false
-		}
-	},
-	behaviors: [
-		IronMultiSelectableBehavior
-	],
-	ready: function() {
-		this.selectable = 'd2l-labs-accordion-collapse';
-		this.activateEvent = 'd2l-labs-accordion-collapse-state-opened';
-		this.selectedAttribute = 'opened';
+class LabsAccordion extends LitElement {
+	static get properties() {
+		return {
+			/**
+			 * Whether to automatically close other opened branches
+			 */
+			autoClose: { type: Boolean, attribute: 'auto-close' },
+			_selected: { type: Number }
+		};
 	}
-});
+
+	static get styles() {
+		return css`
+			:host {
+				display: block;
+				box-sizing: border-box;
+			}
+		`;
+	}
+
+	constructor() {
+		super();
+		this._handleAccordionOpened = this._handleAccordionOpened.bind(this);
+		this.autoClose = false;
+	}
+
+	get selected() {
+		return this._selected;
+	}
+
+	set selected(val) {
+		this.select(val);
+	}
+
+	get isAccordion() {
+		return true;
+	}
+
+	get items() {
+		return [...this.querySelectorAll('d2l-labs-accordion-collapse')];
+	}
+
+	connectedCallback() {
+		super.connectedCallback();
+		this.addEventListener('d2l-labs-accordion-collapse-state-opened', this._handleAccordionOpened);
+	}
+
+	disconnectedCallback() {
+		super.disconnectedCallback();
+		this.removeEventListener('d2l-labs-accordion-collapse-state-opened', this._handleAccordionOpened);
+	}
+
+	render() {
+		return html`
+				<slot></slot>
+		`;
+	}
+
+	select(selected) {
+		this._selected = selected;
+		const items = this.items;
+
+		for (const i in items) {
+			items[i].opened = Number(i) === selected;
+		}
+	}
+
+	_handleAccordionOpened(e) {
+		this.select(this.items.indexOf(e.target));
+	}
+
+	_setisAccordion(val) {
+		this._isAccordion = val;
+	}
+}
+
+customElements.define('d2l-labs-accordion', LabsAccordion);
